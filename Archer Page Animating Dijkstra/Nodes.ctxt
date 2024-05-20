@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Nodes
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Nodes\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=Identity
+comment1.target=Nodes(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Nodes\r\n
+comment2.params=
+comment2.target=void\ RandomNumOld()
+comment3.params=x
+comment3.target=void\ Connections(int)
+numComments=4

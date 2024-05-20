@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Scanners
+comment1.params=
+comment1.target=Scanners()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Scanner\r\n
+comment2.params=
+comment2.target=void\ print()
+comment3.params=y
+comment3.target=int\ sampleMethod(int)
+comment3.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+numComments=4

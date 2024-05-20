@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Queue
+comment0.text=\r\n\r\n\ Archer\ Page\r\n\ 12/03/2024\r\n
+comment1.params=
+comment1.target=Queue()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Queue\r\n
+comment2.params=
+comment2.target=boolean\ queueEmpty()
+comment3.params=Element
+comment3.target=Element\ enqueue(Element)
+comment4.params=
+comment4.target=Element\ Dequeue()
+comment5.params=
+comment5.target=double\ randonum()
+comment6.params=
+comment6.target=int\ Length()
+comment7.params=NumOfDisks
+comment7.target=void\ TowersOfHanoi(int)
+numComments=8
