@@ -11,6 +11,7 @@ public class Algorithm
     private int x;
     public Nodes Start;
     public Nodes End;
+    public Nodes[] Nodes;
     Scanner keyboard;
     /**
      * Constructor for objects of class Algorithm
@@ -25,6 +26,7 @@ public class Algorithm
         keyboard=new Scanner(System.in);
         int number=keyboard.nextInt();
         End = new Nodes(number);
+        Nodes[] Nodes = new Nodes[number];
         System.out.print(number);
     }
 
@@ -41,6 +43,8 @@ public class Algorithm
     }
     
     public int CreateConnections(int number){
+        for(int i=0; i<10; i++){ }
+        Start.Connections(8);
         return number;
     }
 }
