@@ -21,14 +21,19 @@ public class Nodes
          this.Identity=Identity;
   }
   
-  public void RandomNumOld()
+  public void RandomNumOld() //old RNG integer generator
   {
       double x = Math.random()*10+1;
       x = x - x%1;
       System.out.println(x);
   }
   
-  public void Connections(int x){
-      Nodes[] Connections = new Nodes[x]; //Creates an array of Nodes called connections  
+  public void AddConnections(Nodes Node){
+      Connections[Node.Identity-1] = Node;
   }
+
+  public void InitialiseConnections(int x){
+      Nodes[] Connections = new Nodes[x];
+  }
+  
 }
