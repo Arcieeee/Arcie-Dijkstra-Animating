@@ -43,7 +43,7 @@ public class Algorithm
     }
     
     public int CreateConnections(int number){
-        for(int i=0; i<10; i++){ }
+        for(int i=0; i<10; i++){Nodes[i] = new Nodes(i+1); }
         Start.Connections(8);
         return number;
     }
