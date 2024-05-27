@@ -8,43 +8,33 @@ import java.util.Scanner; // Keyboard input.
 public class Algorithm
 {
     // instance variables - replace the example below with your own
-    private int x;
     public Nodes Start;
     public Nodes End;
     public Nodes[] ArrayNodes; //Creates an array of nodes.
+    public int number;
     Scanner keyboard;
     /**
      * Constructor for objects of class Algorithm
      */
     public Algorithm()
     {
-        
-        
         // initialise instance variables
         System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
         keyboard=new Scanner(System.in);
-        int number=keyboard.nextInt(); //retrieves value
+        number=keyboard.nextInt(); //retrieves value
         
-        ArrayNodes = new Nodes[number]; //possibly one too many
+        ArrayNodes = new Nodes[number]; //Sets ArrayNodes to an array containing Nodes of length requested
         
         for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
         {ArrayNodes[i]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-         ArrayNodes[i].InitialiseConnections(number);} //This hopefully Initializes connections of each node.
+         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node.
        
-        Start = ArrayNodes[0]; //creates starting node
-        End = ArrayNodes[number-1]; //creates ending node.
+        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
+        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
         
         
         for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
         DetermineConnections(number);
-    }
-    
-    public int CreateNodes(int number){
-        return number;
-    }
-    
-    public void CreateConnections(int number){
-        
     }
     
     public void DetermineConnections(int number){
@@ -56,5 +46,9 @@ public class Algorithm
     public Nodes ReturnNode(int NodeIdentity){
         System.out.println(ArrayNodes[NodeIdentity].Identity);
         return ArrayNodes[NodeIdentity];
+    }
+    
+    public void RunAlgorithm(){
+        for(int i=0;i<number;i++){if(Start.Connections[i]!=null){i = number;}}
     }
 }
