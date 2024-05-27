@@ -49,17 +49,6 @@ public class Algorithm
     }
     
     public void RunAlgorithm(){
-       Nodes[] Path = new Nodes[number];
-       int[] Distance = new int[number];
-     for (int j=0; j<number; j++){
-        for(int i=0;i<number;i++){
-            if(ArrayNodes[j].Connections[i]!=null){ 
-            
-            
-        
-         }
-    
-       }
-     }
+       DistanceChecker DistanceChecker = new DistanceChecker();
     }
 }
