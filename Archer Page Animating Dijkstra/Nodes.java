@@ -29,11 +29,11 @@ public class Nodes
   }
   
   public void AddConnections(Nodes Node){
-      Connections[Node.Identity-1] = Node;
+      Connections[Node.Identity] = Node;
   }
 
   public void InitialiseConnections(int x){
-      Nodes[] Connections = new Nodes[x];
+      Connections = new Nodes[x];
   }
   
 }
