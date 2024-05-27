@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=DistanceChecker
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DistanceChecker\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=DistanceChecker()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Queue\r\n
+comment2.params=
+comment2.target=boolean\ queueEmpty()
+comment3.params=Element
+comment3.target=Element\ enqueue(Element)
+comment4.params=
+comment4.target=Element\ Dequeue()
+comment5.params=
+comment5.target=double\ randonum()
+comment6.params=
+comment6.target=int\ Length()
+comment7.params=NumOfDisks
+comment7.target=void\ TowersOfHanoi(int)
+numComments=8

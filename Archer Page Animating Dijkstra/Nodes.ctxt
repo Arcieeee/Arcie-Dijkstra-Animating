@@ -10,4 +10,6 @@ comment3.params=Node
 comment3.target=void\ AddConnections(Nodes)
 comment4.params=x
 comment4.target=void\ InitialiseConnections(int)
-numComments=5
+comment5.params=Node
+comment5.target=void\ ExtendedAddConnections(Nodes)
+numComments=6

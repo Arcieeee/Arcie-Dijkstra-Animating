@@ -35,5 +35,9 @@ public class Nodes
   public void InitialiseConnections(int x){
       Connections = new Nodes[x];
   }
-  
+
+  public void ExtendedAddConnections(Nodes Node){
+      Connections[Node.Identity] = Node;
+      Connections[Node.Identity].AddConnections(this);
+  }
 }

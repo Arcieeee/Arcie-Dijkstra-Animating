@@ -38,8 +38,8 @@ public class Algorithm
     }
     
     public void DetermineConnections(int number){
-      for(int i=1; i<number-1; i++){Start.AddConnections(ArrayNodes[i]);
-        ArrayNodes[i].AddConnections(Start); ArrayNodes[i].AddConnections(End); End.AddConnections(ArrayNodes[i]);
+      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i]);
+        End.ExtendedAddConnections(ArrayNodes[i]);
       }
     }
     
@@ -49,6 +49,17 @@ public class Algorithm
     }
     
     public void RunAlgorithm(){
-        for(int i=0;i<number;i++){if(Start.Connections[i]!=null){i = number;}}
+       Nodes[] Path = new Nodes[number];
+       int[] Distance = new int[number];
+     for (int j=0; j<number; j++){
+        for(int i=0;i<number;i++){
+            if(ArrayNodes[j].Connections[i]!=null){ 
+            
+            
+        
+         }
+    
+       }
+     }
     }
 }

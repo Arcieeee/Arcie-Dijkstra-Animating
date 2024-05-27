@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Element
+comment0.text=\r\n\ \r\n\ Archer\ Page\r\n\ 12/03/2024\r\n
+comment1.params=
+comment1.target=Element()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Element\r\n
+comment2.params=Name
+comment2.target=Element(java.lang.Object)
+comment3.params=toFollower
+comment3.target=Element\ addFollower(Element)
+comment4.params=
+comment4.target=Element\ getFollower()
+numComments=5
