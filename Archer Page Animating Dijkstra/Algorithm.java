@@ -48,7 +48,8 @@ public class Algorithm
         return ArrayNodes[NodeIdentity];
     }
     
-    public void RunAlgorithm(){
+    public int RunAlgorithm(){
        DistanceChecker DistanceChecker = new DistanceChecker();
+       return DistanceChecker.Path(Start, End);
     }
 }

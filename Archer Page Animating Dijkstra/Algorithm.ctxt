@@ -9,5 +9,5 @@ comment2.target=void\ DetermineConnections(int)
 comment3.params=NodeIdentity
 comment3.target=Nodes\ ReturnNode(int)
 comment4.params=
-comment4.target=void\ RunAlgorithm()
+comment4.target=int\ RunAlgorithm()
 numComments=5
