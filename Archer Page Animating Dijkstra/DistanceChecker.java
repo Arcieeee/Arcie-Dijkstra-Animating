@@ -22,7 +22,7 @@ public class DistanceChecker
         Current = Start; //Sets the current searched node to the start
         int CurrentDistance = 0; //initialize Distance
         int[][] IdentityDistance = new int[End.Identity+1][3]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
-        for(int h=0; h<End.Identity; h++){
+        for(int h=0; h<End.Identity+1; h++){
             IdentityDistance[h][0] = 0;
             IdentityDistance[h][1] = 2147483647; //sets everything in row 1 to 0; row 2 to max int.
             IdentityDistance[h][2] = 2147483647;
@@ -53,12 +53,16 @@ public class DistanceChecker
           }
           
           //At this point, we have evaluated all connections of the current Node.
-          
           IdentityDistance[Current.Identity][1]=2147483647; //sets distance to current node to max int to indicate it has been searched.
           i=0;
-          while(IdentityDistance[i][1]>CurrentDistance){i++;} //Goes through the array until finds a distance that is equal or less than the current distance (guarenteed)
-          if (i!=End.Identity) //if we are not at the end
-          {Current = Algorithm.ArrayNodes[i];} else {Current = End;} //Current = Node with that identity.
+          int x=0;
+          if(CurrentDistance!=IdentityDistance[End.Identity][1]){
+           while(i<End.Identity){
+            while(IdentityDistance[i][1]>CurrentDistance){} //Goes through the array until finds a distance that is equal or less than the current distance.
+            CurrentDistance=IdentityDistance[i][1]; x = i; i++;}}
+          
+          if (x!=End.Identity) //if we are not at the end
+          {Current = Algorithm.ArrayNodes[x];} else {Current = End;} //Current = Node with that identity.
           
          }
         return CurrentDistance;
