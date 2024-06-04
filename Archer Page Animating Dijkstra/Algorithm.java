@@ -49,7 +49,9 @@ public class Algorithm
     }
     
     public int RunAlgorithm(){
-       DistanceChecker DistanceChecker = new DistanceChecker();
-       return DistanceChecker.Path(Start, End);
+       DistanceChecker DistanceChecker = new DistanceChecker(); //Initialize a distance checker
+       DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
+       return DistanceChecker.Path(Start, End); //returns the distance value
     }
+    
 }

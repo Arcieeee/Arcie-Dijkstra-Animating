@@ -40,4 +40,14 @@ public class Nodes
       Connections[Node.Identity] = Node;
       Connections[Node.Identity].AddConnections(this);
   }
+  
+  public void GenerateRandomNumber(int times){
+      int j=0;
+      while(j<times){
+      double num=Math.random()*10+1;
+      num = (int)Math.round(num); //Generates a random integer number between 1 and 10
+      System.out.println(num);
+      j++;
+    }
+  }
 }

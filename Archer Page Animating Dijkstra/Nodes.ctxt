@@ -12,4 +12,6 @@ comment4.params=x
 comment4.target=void\ InitialiseConnections(int)
 comment5.params=Node
 comment5.target=void\ ExtendedAddConnections(Nodes)
-numComments=6
+comment6.params=times
+comment6.target=void\ GenerateRandomNumber(int)
+numComments=7
