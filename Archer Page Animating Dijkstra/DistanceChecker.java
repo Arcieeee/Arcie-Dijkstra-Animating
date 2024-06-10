@@ -54,16 +54,17 @@ public class DistanceChecker
           
           //At this point, we have evaluated all connections of the current Node.
           IdentityDistance[Current.Identity][1]=2147483647; //sets distance to current node to max int to indicate it has been searched.
-          i=0;
           int x=0;
-          if(CurrentDistance!=IdentityDistance[End.Identity][1]){
-           while(i<End.Identity){
-            while(IdentityDistance[i][1]>CurrentDistance){} //Goes through the array until finds a distance that is equal or less than the current distance.
-            CurrentDistance=IdentityDistance[i][1]; x = i; i++;}}
+          
+          for(i=0; i<=End.Identity; i++){
+              if(IdentityDistance[i][1]<=CurrentDistance){
+                  x=i; CurrentDistance=IdentityDistance[i][1];}}
           
           if (x!=End.Identity) //if we are not at the end
-          {Current = Algorithm.ArrayNodes[x];} else {Current = End;} //Current = Node with that identity.
+          {Current = Algorithm.ArrayNodes[x];} 
+          else {Current = End;} //Current = Node with that identity.
           
+          i=1;
          }
         return CurrentDistance;
     }
