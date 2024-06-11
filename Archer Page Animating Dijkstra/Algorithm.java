@@ -27,7 +27,7 @@ public class Algorithm
         
         for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
         {ArrayNodes[i]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node.
+         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
        
         Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
         End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)

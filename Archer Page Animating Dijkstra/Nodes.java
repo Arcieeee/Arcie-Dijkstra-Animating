@@ -29,7 +29,11 @@ public class Nodes
   }
   
   public void AddConnections(Nodes Node){
-      Connections[Node.Identity] = Node;
+      Connections[Node.Identity] = Node; 
+      if(Node.Identity<Identity)
+      System.out.println("Connection "+Node.Identity+" - "+Identity+" Initialized with weight "+distance);
+      else
+      System.out.println("Connection "+Identity+" - "+Node.Identity+" Initialized with weight "+Node.distance);
   }
 
   public void InitialiseConnections(int x){
