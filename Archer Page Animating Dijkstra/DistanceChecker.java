@@ -38,35 +38,21 @@ public class DistanceChecker
           while(Current != End){ //While we are not at the end
            while(i<=End.Identity){  
            
-           int x=0;    
+          int x=0;    
                while(Current.Connections[i]==null&&x==0){ //Goes all the connections of the current node until it finds one, or until it runs out of connections to search
                i++; if (i>End.Identity){i=End.Identity; x=1;}
-           }
+          }
            
            if(x==0){ //if we have a connection
-           if(IdentityDistance[Current.Connections[i].Identity][status]==unvisited) { //If the node hasn't been visited
-               
-               IdentityDistance[Current.Connections[i].Identity][status] = visited; //Set node status to visited
-               IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance; //Update Search Distance
-               IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
-               
-            } else if (IdentityDistance[Current.Connections[i].Identity][status]==searched){ //If the node has already been searched from
-                
-                 if(IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
+         
+           if(IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
                 
                   IdentityDistance[Current.Connections[i].Identity][status] = visited; //Set node status to visited
                   IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance; //Update Search Distance
                   IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
                   
                 }
-                
-            } else if (IdentityDistance[Current.Connections[i].Identity][SearchDistance]>IdentityDistance[Current.Identity][SearchDistance]+Current.Connections[i].distance){ //Since we know node status is visited; if search distance > new found distance
-               
-               IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance; //update Search Distance
-               IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
-               
-            }
-            
+
            if(CurrentDistance == IdentityDistance[Current.Identity][SearchDistance]){CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1]; } //If this is the first branch from the node, set Current Distance to the new distance.
            else if (CurrentDistance > IdentityDistance[Current.Connections[i].Identity][SearchDistance]){CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1];} //else if the distance travelled is larger that previously known largest distance, update distance.
           } i++;
@@ -78,7 +64,7 @@ public class DistanceChecker
           int x=0;
           
           for(i=0; i<=End.Identity; i++){
-              if(IdentityDistance[i][1]<=CurrentDistance){
+              if(IdentityDistance[i][SearchDistance]<=CurrentDistance){
                   x=i; CurrentDistance=IdentityDistance[i][1];}}
           
           if (x!=End.Identity) //if we are not at the end
