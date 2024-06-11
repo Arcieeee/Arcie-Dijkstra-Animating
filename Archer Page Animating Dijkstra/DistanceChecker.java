@@ -30,7 +30,7 @@ public class DistanceChecker
             IdentityDistance[i][TrueDistance] = 2147483647;
         }
         
-        IdentityDistance[0][1] = 0; IdentityDistance[0][2] = 0; //except for the start
+        IdentityDistance[0][SearchDistance] = 0; IdentityDistance[0][TrueDistance] = 0; //except for the start
        
         int i=0; //Counter = 0
         //at this point we have an array full of 0s and max int, and a start distance 0. 
@@ -59,7 +59,7 @@ public class DistanceChecker
           }
           
           //At this point, we have evaluated all connections of the current Node.
-          IdentityDistance[Current.Identity][SearchDistance]=2147483647; //sets distance to current node to max int to indicate it has been searched.
+          IdentityDistance[Current.Identity][SearchDistance]=2147483647; //sets search distance to current node to max int to prevent it from being selected again unless a shorter path is found to it.
           IdentityDistance[Current.Identity][Status]=searched;
           int x=0;
           
