@@ -16,7 +16,7 @@ public class Nodes
      */
     public Nodes(int Identity)
   { 
-         double num=Math.random()*10+1;
+         double num=Math.random()*10+0.5;
          distance = (int)Math.round(num); //Generates a random integer number between 1 and 10
          this.Identity=Identity;
   }
@@ -48,7 +48,7 @@ public class Nodes
   public void GenerateRandomNumber(int times){
       int j=0;
       while(j<times){
-      double num=Math.random()*10+1;
+      double num=Math.random()*10+0.5;
       num = (int)Math.round(num); //Generates a random integer number between 1 and 10
       System.out.println(num);
       j++;
