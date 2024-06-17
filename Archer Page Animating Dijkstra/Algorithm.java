@@ -10,9 +10,10 @@ public class Algorithm
     // instance variables - replace the example below with your own
     public Nodes Start;
     public Nodes End;
-    public Nodes[] ArrayNodes; //Creates an array of nodes.
+    public Nodes[][] ArrayNodes; //Creates an array of nodes.
     public int number;
     Scanner keyboard;
+    public String[] Names;
     /**
      * Constructor for objects of class Algorithm
      */
@@ -23,14 +24,14 @@ public class Algorithm
     }
     
     public void DetermineConnections(int number){
-      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i]);
-        End.ExtendedAddConnections(ArrayNodes[i]);
+      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i][0]);
+        End.ExtendedAddConnections(ArrayNodes[i][0]);
       }
     }
     
     public Nodes ReturnNode(int NodeIdentity){
-        System.out.println(ArrayNodes[NodeIdentity].Identity);
-        return ArrayNodes[NodeIdentity];
+        System.out.println(ArrayNodes[NodeIdentity][0].Identity);
+        return ArrayNodes[NodeIdentity][0];
     }
     
     public void RunAlgorithm(){
@@ -45,16 +46,16 @@ public class Algorithm
        // keyboard=new Scanner(System.in);
        // number=keyboard.nextInt(); //retrieves value
         
-        ArrayNodes = new Nodes[number]; //Sets ArrayNodes to an array containing Nodes of length requested
+        ArrayNodes = new Nodes[number][2]; //Sets ArrayNodes to an array containing Nodes of length requested
         
         for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
-        {ArrayNodes[i]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
+        {ArrayNodes[i][0]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
+         ArrayNodes[i][0].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
        
-        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
+        End = ArrayNodes[number-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
           
-        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
+        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i][0].Identity);}
         DetermineConnections(number);
         this.number=number;
         System.out.println("Done!");
@@ -62,16 +63,20 @@ public class Algorithm
     
     public void ImportGraph(String[] nodes, String[] connections){
         int x = nodes.length;
-        ArrayNodes = new Nodes[number];
+        ArrayNodes = new Nodes[x][2];
+        Names = new String[x];
         for (int i=0; i<number; i++)
-        {ArrayNodes[i]=new Nodes(i); ArrayNodes[i].Name=nodes[i];
+        {ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].Name=nodes[i]; Names[i]=ArrayNodes[i][0].Name;
         }
 
-        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
+        End = ArrayNodes[number-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
         
-        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
+        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i][0].Identity);}
         
+        for (int i=0; i<number; i++)
+        {
+        }
     }
     
 }

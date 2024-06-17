@@ -71,7 +71,7 @@ public class DistanceChecker
                     x=i; CurrentDistance=IdentityDistance[i][SearchDistance];}}
 
             if (x!=End.Identity) //if we are not at the end
-            {Current = Algorithm.ArrayNodes[x];} 
+            {Current = Algorithm.ArrayNodes[x][0];} 
             else {Current = End;} //Current = Node with that identity.
 
             i=0;
