@@ -11,6 +11,7 @@ public class Nodes
   public int distance;
   public Nodes[] Connections;
   public int Identity;
+  public String Name;
     /**
      * Constructor for objects of class Nodes
      */
@@ -19,6 +20,7 @@ public class Nodes
          double num=Math.random()*10+0.5;
          distance = (int)Math.round(num); //Generates a random integer number between 1 and 10
          this.Identity=Identity;
+         Name=this.Identity+"";
   }
   
   public void RandomNumOld() //old RNG integer generator
@@ -31,9 +33,9 @@ public class Nodes
   public void AddConnections(Nodes Node){
       Connections[Node.Identity] = Node; 
       if(Node.Identity<Identity)
-      System.out.println("Connection "+Node.Identity+" - "+Identity+" Initialized with weight "+distance);
+      System.out.println("Connection "+Node.Name+" - "+Name+" Initialized with weight "+distance);
       else
-      System.out.println("Connection "+Identity+" - "+Node.Identity+" Initialized with weight "+Node.distance);
+      System.out.println("Connection "+Name+" - "+Node.Name+" Initialized with weight "+Node.distance);
   }
 
   public void InitialiseConnections(int x){

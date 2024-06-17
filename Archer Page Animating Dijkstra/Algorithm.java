@@ -53,12 +53,25 @@ public class Algorithm
        
         Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
         End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
-        
-        
+          
         for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
         DetermineConnections(number);
         this.number=number;
         System.out.println("Done!");
+    }
+    
+    public void ImportGraph(String[] nodes, String[] connections){
+        int x = nodes.length;
+        ArrayNodes = new Nodes[number];
+        for (int i=0; i<number; i++)
+        {ArrayNodes[i]=new Nodes(i); ArrayNodes[i].Name=nodes[i];
+        }
+
+        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
+        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+        
+        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
+        
     }
     
 }
