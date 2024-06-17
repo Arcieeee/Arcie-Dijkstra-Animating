@@ -18,23 +18,8 @@ public class Algorithm
      */
     public Algorithm()
     {
-        // initialise instance variables
-        System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
-        keyboard=new Scanner(System.in);
-        number=keyboard.nextInt(); //retrieves value
         
-        ArrayNodes = new Nodes[number]; //Sets ArrayNodes to an array containing Nodes of length requested
-        
-        for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
-        {ArrayNodes[i]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
-       
-        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
-        
-        
-        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
-        DetermineConnections(number);
+    
     }
     
     public void DetermineConnections(int number){
@@ -52,6 +37,26 @@ public class Algorithm
        DistanceChecker DistanceChecker = new DistanceChecker(); //Initialize a distance checker
        DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
        return DistanceChecker.Path(Start, End); //returns the distance value
+    }
+    
+    public void SetNodeNumber(){
+        // initialise instance variables
+        System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
+        keyboard=new Scanner(System.in);
+        number=keyboard.nextInt(); //retrieves value
+        
+        ArrayNodes = new Nodes[number]; //Sets ArrayNodes to an array containing Nodes of length requested
+        
+        for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
+        {ArrayNodes[i]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
+         ArrayNodes[i].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
+       
+        Start = ArrayNodes[0]; //Sets Start Node equal to Node with identity 0
+        End = ArrayNodes[number-1]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+        
+        
+        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
+        DetermineConnections(number);
     }
     
 }
