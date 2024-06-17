@@ -33,17 +33,17 @@ public class Algorithm
         return ArrayNodes[NodeIdentity];
     }
     
-    public int RunAlgorithm(){
+    public void RunAlgorithm(){
        DistanceChecker DistanceChecker = new DistanceChecker(); //Initialize a distance checker
        DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
-       return DistanceChecker.Path(Start, End); //returns the distance value
+       System.out.println(DistanceChecker.Path(Start, End)); //prints out the distance value
     }
     
-    public void SetNodeNumber(){
+    public void SetNodeNumber(int number){
         // initialise instance variables
-        System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
-        keyboard=new Scanner(System.in);
-        number=keyboard.nextInt(); //retrieves value
+       // System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
+       // keyboard=new Scanner(System.in);
+       // number=keyboard.nextInt(); //retrieves value
         
         ArrayNodes = new Nodes[number]; //Sets ArrayNodes to an array containing Nodes of length requested
         
@@ -57,6 +57,8 @@ public class Algorithm
         
         for (int i=0; i<number; i++){System.out.println(ArrayNodes[i].Identity);}
         DetermineConnections(number);
+        this.number=number;
+        System.out.println("Done!");
     }
     
 }

@@ -8,5 +8,5 @@
 public class Master
 {
     // instance variables - replace the example below with your own
-    Gui Gui = new Gui(1600, 800, "");
+    Master(){Gui Gui = new Gui(1600, 800, "");}
 }

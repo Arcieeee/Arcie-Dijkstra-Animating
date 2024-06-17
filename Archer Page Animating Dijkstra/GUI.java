@@ -92,9 +92,10 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         switch (cmd){
          case "Quit" : exit();
               break;
-         case "Set Number of Nodes" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); System.out.println(reply);
+         case "Set Number of Nodes" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); int r = Integer.parseInt(reply); Algorithm.SetNodeNumber(r);
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm();
+              break;
          default : System.out.println(cmd+" is better than the other menu item...");
        }
     }
