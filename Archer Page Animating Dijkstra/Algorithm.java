@@ -62,21 +62,7 @@ public class Algorithm
     }
     
     public void ImportGraph(String[] nodes, String[] connections){
-        int x = nodes.length;
-        ArrayNodes = new Nodes[x][2];
-        Names = new String[x];
-        for (int i=0; i<number; i++)
-        {ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].Name=nodes[i]; Names[i]=ArrayNodes[i][0].Name;
-        }
-
-        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[number-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
-        
-        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i][0].Identity);}
-        
-        for (int i=0; i<number; i++)
-        {
-        }
+       
     }
     
 }

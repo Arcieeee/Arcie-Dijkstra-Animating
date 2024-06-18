@@ -41,6 +41,9 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         menuItem=new JMenuItem("Set Number of Nodes");
         menuItem.addActionListener(this);
         menu.add(menuItem);
+        menuItem=new JMenuItem("Import Graph");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
 
         
         menu2 = new JMenu("File");
@@ -96,6 +99,8 @@ public class Gui extends JFrame implements ActionListener,MouseListener
          case "Set Number of Nodes" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); int r = Integer.parseInt(reply); Algorithm.SetNodeNumber(r);
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm();
+              break;
+         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true);
               break;
          default : System.out.println(cmd+" is better than the other menu item...");
        }
