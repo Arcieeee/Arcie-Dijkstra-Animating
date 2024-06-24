@@ -136,6 +136,10 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         Algorithm.ImportGraph(Nodes, Connections);
     }
     
+    public void addAlgorithm(Algorithm Algorithm){
+        this.Algorithm = Algorithm;
+    }
+    
     public void mouseExited(MouseEvent e) {System.out.println("exit");}
     public void mouseEntered(MouseEvent e) {System.out.println("enter");}
     public void mouseReleased(MouseEvent e) {System.out.println("release");}

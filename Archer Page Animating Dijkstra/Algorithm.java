@@ -63,24 +63,26 @@ public class Algorithm
     
     public void ImportGraph(String[][] nodes, String[][] connections){
        ArrayNodes = new Nodes[nodes.length][2]; //Sets ArrayNodes to an array containing Nodes of length requested
+       Names = new String[nodes.length];
         for(int i=0;i<nodes.length;i++){
-           ArrayNodes[i][0]=new Nodes(i);
-           ArrayNodes[i][0].Name = nodes[i][0];
+           ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].Connections = new Nodes[nodes.length]; ArrayNodes[i][0].Name = nodes[i][0];
            Names[i] = nodes[i][0];
        }
        int h=0;
        
-    int i=0; int j=0;
+       int i=0; int j=0; int k=0;
        for(j=0; j<connections.length; j++){
-        while(connections[j][0]!=Names[i]){
+        while(!connections[j][0].equals(Names[i])){
+            System.out.println("String /"+connections[j][0]+"/ and String /"+Names[i]+"/ is different");
+            i++;
+        }
+        k=i; i=0;
+        while(!connections[j][1].equals(Names[i])){
            i++;
         }
-        int k = i; i=0;
-        while(connections[j][1]!=Names[i]){
-           i++;
+        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0]); i=0;
         }
-        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0]);
-        j++;
-        }
+    
+        System.out.println("Done");
     }
 }
