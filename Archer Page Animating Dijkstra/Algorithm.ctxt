@@ -13,5 +13,5 @@ comment4.target=void\ RunAlgorithm()
 comment5.params=number
 comment5.target=void\ SetNodeNumber(int)
 comment6.params=nodes\ connections
-comment6.target=void\ ImportGraph(java.lang.String[],\ java.lang.String[])
+comment6.target=void\ ImportGraph(java.lang.String[][],\ java.lang.String[][])
 numComments=7

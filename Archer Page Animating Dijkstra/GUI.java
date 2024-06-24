@@ -100,7 +100,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm();
               break;
-         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true);
+         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); ProcessImport(Graph);
               break;
          default : System.out.println(cmd+" is better than the other menu item...");
        }
@@ -108,6 +108,32 @@ public class Gui extends JFrame implements ActionListener,MouseListener
     
     public void exit(){ 
         System.exit(0);
+    }
+    
+    public void ProcessImport(String Import)
+    {
+        String parts[] = Import.split(",");  // this is the magic where we use the split command.
+        
+        for (int i=0;i<parts.length;i++)
+            System.out.println(parts[i]);   
+        
+        System.out.println(parts.length+"Length!");
+            
+        int x = Integer.parseInt(parts[0]);
+        
+        String Nodes[][] = new String[x][3];
+        String Connections[][] = new String[Integer.parseInt(parts[1+x*3])][3];
+        
+        for (int i=0;i<x;i++){ 
+        Nodes[i][0]=parts[3*i+1]; Nodes[i][1]=parts[3*i+2]; Nodes[i][2]=parts[3*i+3]; System.out.println(Nodes[i][0]); }
+        System.out.println("Done");
+        
+        int y=1+x*3;
+        for(int i=0; i<Integer.parseInt(parts[y]); i++){
+        Connections[i][0]=parts[3*i+y+1]; Connections[i][1]=parts[3*i+y+2]; Connections[i][2]=parts[3*i+y+3];}
+        System.out.println("Done");
+        
+        Algorithm.ImportGraph(Nodes, Connections);
     }
     
     public void mouseExited(MouseEvent e) {System.out.println("exit");}
