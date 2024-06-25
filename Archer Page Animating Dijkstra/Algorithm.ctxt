@@ -14,4 +14,6 @@ comment5.params=number
 comment5.target=void\ SetNodeNumber(int)
 comment6.params=nodes\ connections
 comment6.target=void\ ImportGraph(java.lang.String[][],\ java.lang.String[][])
-numComments=7
+comment7.params=a
+comment7.target=void\ SetDistanceChecker(DistanceChecker)
+numComments=8

@@ -45,10 +45,10 @@ public class DistanceChecker
 
                 if(x==0){ //if we have a connection
 
-                    if(IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
+                    if(IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
 
                         IdentityDistance[Current.Connections[i].Identity][Status] = visited; //Set node Status to visited
-                        IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.Connections[i].distance; //Update Search Distance
+                        IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]; //Update Search Distance
                         IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
 
                     }

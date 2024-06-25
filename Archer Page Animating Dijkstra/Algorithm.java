@@ -14,6 +14,7 @@ public class Algorithm
     public int number;
     Scanner keyboard;
     public String[] Names;
+    public DistanceChecker DistanceChecker;
     /**
      * Constructor for objects of class Algorithm
      */
@@ -24,8 +25,8 @@ public class Algorithm
     }
     
     public void DetermineConnections(int number){
-      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i][0]);
-        End.ExtendedAddConnections(ArrayNodes[i][0]);
+      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i][0], 1);
+        End.ExtendedAddConnections(ArrayNodes[i][0], 1);
       }
     }
     
@@ -35,7 +36,7 @@ public class Algorithm
     }
     
     public void RunAlgorithm(){
-       DistanceChecker DistanceChecker = new DistanceChecker(); //Initialize a distance checker
+       DistanceChecker = new DistanceChecker(); //Initialize a distance checker
        DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
        System.out.println(DistanceChecker.Path(Start, End)); //prints out the distance value
     }
@@ -65,7 +66,7 @@ public class Algorithm
        ArrayNodes = new Nodes[nodes.length][2]; //Sets ArrayNodes to an array containing Nodes of length requested
        Names = new String[nodes.length];
         for(int i=0;i<nodes.length;i++){
-           ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].Connections = new Nodes[nodes.length]; ArrayNodes[i][0].Name = nodes[i][0];
+           ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].InitialiseConnections(nodes.length); ArrayNodes[i][0].Name = nodes[i][0];
            Names[i] = nodes[i][0];
        }
        int h=0;
@@ -80,9 +81,16 @@ public class Algorithm
         while(!connections[j][1].equals(Names[i])){
            i++;
         }
-        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0]); i=0;
+        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); i=0;
         }
     
         System.out.println("Done");
+        
+       Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
+       End = ArrayNodes[nodes.length-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+    }
+    
+    public void SetDistanceChecker(DistanceChecker a){
+        DistanceChecker = a;
     }
 }

@@ -119,10 +119,10 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         
         System.out.println(parts.length+"Length!");
             
-        int x = Integer.parseInt(parts[0]);
+        int x = Integer.parseInt(parts[0]); int z = Integer.parseInt(parts[1+x*3]); //Fails if there are spaces
         
         String Nodes[][] = new String[x][3];
-        String Connections[][] = new String[Integer.parseInt(parts[1+x*3])][3];
+        String Connections[][] = new String[z][3];
         
         for (int i=0;i<x;i++){ 
         Nodes[i][0]=parts[3*i+1]; Nodes[i][1]=parts[3*i+2]; Nodes[i][2]=parts[3*i+3]; System.out.println(Nodes[i][0]); }
