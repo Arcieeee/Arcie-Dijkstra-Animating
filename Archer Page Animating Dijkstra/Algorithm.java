@@ -25,8 +25,16 @@ public class Algorithm
     }
     
     public void DetermineConnections(int number){
-      for(int i=1; i<number-1; i++){Start.ExtendedAddConnections(ArrayNodes[i][0], 1);
-        End.ExtendedAddConnections(ArrayNodes[i][0], 1);
+      for(int i=1; i<number-1; i++){
+        double num=Math.random()*10+0.5;
+        int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10    
+        
+        Start.ExtendedAddConnections(ArrayNodes[i][0], numInt);
+        
+        num=Math.random()*10+0.5;
+        numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10    
+        
+        End.ExtendedAddConnections(ArrayNodes[i][0], numInt);
       }
     }
     

@@ -37,7 +37,7 @@ public class Nodes
       if(Node.Identity<Identity)
       System.out.println("Connection "+Node.Name+" - "+Name+" Initialized with weight "+distance[Node.Identity]);
       else
-      System.out.println("Connection "+Name+" - "+Node.Name+" Initialized with weight "+Node.distance[Node.Identity]);
+      System.out.println("Connection "+Name+" - "+Node.Name+" Initialized with weight "+Node.distance[this.Identity]);
   }
 
   public void InitialiseConnections(int x){
@@ -55,8 +55,8 @@ public class Nodes
       int j=0;
       while(j<times){
       double num=Math.random()*10+0.5;
-      num = (int)Math.round(num); //Generates a random integer number between 1 and 10
-      System.out.println(num);
+      int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10
+      System.out.println(numInt);
       j++;
     }
   }
