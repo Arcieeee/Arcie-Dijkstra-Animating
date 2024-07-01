@@ -17,7 +17,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
     final String fileName="blueRect.png";
     ImageIcon image= new ImageIcon(fileName);
     String[] MenuItems = new String[2]; //array for future use if I have to add numerous items on startup
-    Animation animation = new Animation();
+    Graphics2d animation = new Graphics2d();
     
     public Gui(int x, int y, String Title)
     {
