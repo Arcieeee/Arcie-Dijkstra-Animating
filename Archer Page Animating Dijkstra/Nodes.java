@@ -12,6 +12,8 @@ public class Nodes
   public Nodes[] Connections;
   public int Identity;
   public String Name;
+  public int xPos;
+  public int yPos;
     /**
      * Constructor for objects of class Nodes
      */
@@ -59,5 +61,9 @@ public class Nodes
       System.out.println(numInt);
       j++;
     }
+  }
+  
+  public void SetPosition(int x, int y){
+      xPos = x; yPos = y;
   }
 }

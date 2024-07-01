@@ -14,4 +14,6 @@ comment5.params=Node\ weight
 comment5.target=void\ ExtendedAddConnections(Nodes,\ int)
 comment6.params=times
 comment6.target=void\ GenerateRandomNumber(int)
-numComments=7
+comment7.params=x\ y
+comment7.target=void\ SetPosition(int,\ int)
+numComments=8

@@ -71,10 +71,10 @@ public class Algorithm
     }
     
     public void ImportGraph(String[][] nodes, String[][] connections){
-       ArrayNodes = new Nodes[nodes.length][2]; //Sets ArrayNodes to an array containing Nodes of length requested
+       ArrayNodes = new Nodes[nodes.length][1]; //Sets ArrayNodes to an array containing Nodes of length requested
        Names = new String[nodes.length];
         for(int i=0;i<nodes.length;i++){
-           ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].InitialiseConnections(nodes.length); ArrayNodes[i][0].Name = nodes[i][0];
+           ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].InitialiseConnections(nodes.length); ArrayNodes[i][0].Name = nodes[i][0]; ArrayNodes[i][0].SetPosition(Integer.parseInt(nodes[i][1]), Integer.parseInt(nodes[i][2]));
            Names[i] = nodes[i][0];
        }
        int h=0;
