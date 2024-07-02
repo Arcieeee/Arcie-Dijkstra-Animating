@@ -2,11 +2,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*; //Geometry stuff for lines
+import java.awt.image.BufferedImage; //to reduce flickering
 /**
- * Write a description of class Animation here.
+ * This is the class responsible for the visual representation of the algorithm
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Archer
+ * 3/07/2024
  */
 public class Graphics2d extends JFrame {
     // instance variables - replace the example below with your own
@@ -25,16 +26,17 @@ public class Graphics2d extends JFrame {
          
     }
 
-    
+    private BufferedImage offScreenImage;
     public void paint (Graphics g) {
         super.paint(g);
+        
+        if (offScreenImage == null)
+            offScreenImage = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
+        
         Graphics2D g2 = (Graphics2D) g;
         //image.paintIcon(this,g,x,y);
         
-        int xStart=50;
-        int xEnd=500;
-        int yStart=20;
-        int yEnd=400;
+        int xStart=50;int xEnd=500;int yStart=20;int yEnd=400;
         
         g2.setColor(Color.BLACK);
         g2.fillRect(xStart,yStart,xEnd,yEnd);
@@ -44,9 +46,7 @@ public class Graphics2d extends JFrame {
         
         g2.drawOval(xStart,yStart,xEnd,yEnd);
     } //paint
-    
-
-    
+        
     public void manualpaint(){
         repaint();
     }
