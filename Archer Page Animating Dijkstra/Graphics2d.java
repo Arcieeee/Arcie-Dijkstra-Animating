@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage; //to reduce flickering
  * This is the class responsible for the visual representation of the algorithm
  *
  * Archer
- * 3/07/2024
+ * 22/07/2024
  */
 public class Graphics2d extends JFrame {
     // instance variables - replace the example below with your own
