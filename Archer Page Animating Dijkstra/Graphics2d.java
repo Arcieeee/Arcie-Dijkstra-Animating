@@ -16,15 +16,22 @@ public class Graphics2d extends JFrame {
     ImageIcon image= new ImageIcon(fileName);
     Nodes[][] Info;
     int[][] rectPositions;
+    int[][] linePos;
     
-    public Graphics2d(Nodes[][] Info){
+    public Graphics2d(Nodes[][] Info, int[][] linePos){
         setTitle("2D graphics"); //Name
         this.Info=Info;
-        this.getContentPane().setPreferredSize(new Dimension(500,500)); //Size
+        this.getContentPane().setPreferredSize(new Dimension(1000,1000)); //Size
         this.getContentPane().setLayout(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        this.linePos=linePos;
+        
+        rectPositions = new int[Info.length][3]; 
+        for(int i=0; i<Info.length; i++){
+            rectPositions[i][0]=Info[i][0].xPos; rectPositions[i][1]=Info[i][0].yPos; 
+        }
         
         
     }
@@ -39,8 +46,17 @@ public class Graphics2d extends JFrame {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLACK);
         
+        for (int i=0; i<Info.length; i++){
+            g2.drawRect(rectPositions[i][0],rectPositions[i][1], 200, 125);
+        }
+        for(int i=0; i<Info.length; i++){
+            g2.drawLine(linePos[i][0], linePos[i][1], linePos[i][2], linePos[i][3]);
+        }
         
-        
+        g2.setColor(Color.RED);
+        for(int i=0; i<Info.length; i++){
+            g2.drawString(Info[i][0].Name, rectPositions[i][0]+100,rectPositions[i][1]+63);
+        }
     } //paint
         
     public void manualpaint(){

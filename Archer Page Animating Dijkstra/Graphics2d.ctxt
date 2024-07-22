@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Graphics2d
 comment0.text=\r\n\ This\ is\ the\ class\ responsible\ for\ the\ visual\ representation\ of\ the\ algorithm\r\n\r\n\ Archer\r\n\ 3/07/2024\r\n
-comment1.params=Info
-comment1.target=Graphics2d(Nodes[][])
+comment1.params=Info\ linePos
+comment1.target=Graphics2d(Nodes[][],\ int[][])
 comment2.params=g
 comment2.target=void\ paint(java.awt.Graphics)
 comment3.params=
