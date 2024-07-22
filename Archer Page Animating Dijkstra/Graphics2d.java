@@ -47,15 +47,17 @@ public class Graphics2d extends JFrame {
         g2.setColor(Color.BLACK);
         
         for (int i=0; i<Info.length; i++){
-            g2.drawRect(rectPositions[i][0],rectPositions[i][1], 200, 125);
+            g2.fillRect(rectPositions[i][0],rectPositions[i][1], 63, 63);
         }
-        for(int i=0; i<Info.length; i++){
+        for(int i=0; i<linePos.length; i++){
             g2.drawLine(linePos[i][0], linePos[i][1], linePos[i][2], linePos[i][3]);
         }
         
         g2.setColor(Color.RED);
+        
+        
         for(int i=0; i<Info.length; i++){
-            g2.drawString(Info[i][0].Name, rectPositions[i][0]+100,rectPositions[i][1]+63);
+            g2.drawString(Info[i][0].Name, rectPositions[i][0]+32,rectPositions[i][1]+32);
         }
     } //paint
         
