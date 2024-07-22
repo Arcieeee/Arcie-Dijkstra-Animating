@@ -1,9 +1,13 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*; // Listener
+import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 import java.util.Scanner; // Keyboard input.
 /**
  * The Implementation of the algorithm
  *
  * Archer Page
- * 13/05/2024
+ * 22/07/2024
  */
 public class Algorithm
 {
@@ -15,13 +19,14 @@ public class Algorithm
     Scanner keyboard;
     public String[] Names;
     public DistanceChecker DistanceChecker;
+    Graphics2d myGraphic;
+    
     /**
      * Constructor for objects of class Algorithm
      */
-    public Algorithm()
+    public Algorithm(Graphics2d myGraphic)
     {
-        
-    
+        this.myGraphic=myGraphic;
     }
     
     public void DetermineConnections(int number){
@@ -44,7 +49,8 @@ public class Algorithm
     }
     
     public void RunAlgorithm(){
-       DistanceChecker = new DistanceChecker(); //Initialize a distance checker
+       myGraphic = new Graphics2d(ArrayNodes);
+       DistanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker
        DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
        System.out.println(DistanceChecker.Path(Start, End)); //prints out the distance value
     }
@@ -68,6 +74,7 @@ public class Algorithm
         DetermineConnections(number);
         this.number=number;
         System.out.println("Done!");
+        myGraphic = new Graphics2d(ArrayNodes);
     }
     
     public void ImportGraph(String[][] nodes, String[][] connections){
@@ -89,13 +96,16 @@ public class Algorithm
         while(!connections[j][1].equals(Names[i])){
            i++;
         }
-        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); i=0;
+        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); i=0; 
         }
     
         System.out.println("Done");
         
        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
        End = ArrayNodes[nodes.length-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+       
+       myGraphic = new Graphics2d(ArrayNodes);
+       
     }
     
     public void SetDistanceChecker(DistanceChecker a){

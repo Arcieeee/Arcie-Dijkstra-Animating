@@ -1,4 +1,7 @@
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*; // Listener
+import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 /**
  * Write a description of class DistanceChecker here.
  *
@@ -9,9 +12,10 @@ public class DistanceChecker
 {
     public Nodes Current = null;
     public Algorithm Algorithm = null;
+    Graphics2d myGraphic;
 
-    public DistanceChecker(){
-
+    public DistanceChecker(Graphics2d myGraphic){
+        this.myGraphic=myGraphic;
     }
 
     public void setAlgorithm(Algorithm Algorithm){
@@ -19,6 +23,7 @@ public class DistanceChecker
     }
 
     public int Path(Nodes Start, Nodes End){
+       
         Current = Start; //Sets the Current searched node to the start
         int CurrentDistance = 0; //initialize Distance
         int[][] IdentityDistance = new int[End.Identity+1][3]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance

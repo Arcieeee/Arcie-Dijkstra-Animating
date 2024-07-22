@@ -12,7 +12,6 @@ public class Gui extends JFrame implements ActionListener,MouseListener
 {
     // instance variables - replace the example below with your own
    
-    Algorithm Algorithm = new Algorithm();
     JMenuBar menuBar; 
     JMenu menu; JMenu menu2;
     JMenuItem menuItem;
@@ -21,7 +20,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
     String[] MenuItems = new String[2]; //array for future use if I have to add numerous items on startup
     
     Graphics2d animation;
-    
+    Algorithm Algorithm = new Algorithm(animation);
     public Gui(int x, int y, String Title)
     {
         setTitle(Title);
@@ -77,9 +76,9 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm();
               break;
-         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); processImport(Graph);
+         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); processImport(Graph); 
               break;
-         case "Paint" : if(animation==null){animation = new Graphics2d();}; animation.repaint();
+         case "Paint" : animation.repaint();
               break;
          default : System.out.println(cmd+" is better than the other menu item...");
        }

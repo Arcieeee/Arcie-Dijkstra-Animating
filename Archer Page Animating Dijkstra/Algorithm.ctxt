@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Algorithm
-comment0.text=\r\n\ The\ Implementation\ of\ the\ algorithm\r\n\r\n\ Archer\ Page\r\n\ 13/05/2024\r\n
-comment1.params=
-comment1.target=Algorithm()
+comment0.text=\r\n\ The\ Implementation\ of\ the\ algorithm\r\n\r\n\ Archer\ Page\r\n\ 22/07/2024\r\n
+comment1.params=myGraphic
+comment1.target=Algorithm(Graphics2d)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Algorithm\r\n
 comment2.params=number
 comment2.target=void\ DetermineConnections(int)

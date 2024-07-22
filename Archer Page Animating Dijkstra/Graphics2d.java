@@ -14,16 +14,19 @@ public class Graphics2d extends JFrame {
     Canvas myGraphic;
     final String fileName="blueRect.png";
     ImageIcon image= new ImageIcon(fileName);
+    Nodes[][] Info;
+    int[][] rectPositions;
     
-    public Graphics2d(){
+    public Graphics2d(Nodes[][] Info){
         setTitle("2D graphics"); //Name
-        
+        this.Info=Info;
         this.getContentPane().setPreferredSize(new Dimension(500,500)); //Size
         this.getContentPane().setLayout(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-         
+        
+        
     }
 
     private BufferedImage offScreenImage;
@@ -34,17 +37,10 @@ public class Graphics2d extends JFrame {
             offScreenImage = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
         
         Graphics2D g2 = (Graphics2D) g;
-        //image.paintIcon(this,g,x,y);
-        
-        int xStart=50;int xEnd=500;int yStart=20;int yEnd=400;
-        
         g2.setColor(Color.BLACK);
-        g2.fillRect(xStart,yStart,xEnd,yEnd);
         
-        Line2D lin = new Line2D.Float(xStart,yStart,xEnd,yEnd);
-        g2.draw(lin);
         
-        g2.drawOval(xStart,yStart,xEnd,yEnd);
+        
     } //paint
         
     public void manualpaint(){
