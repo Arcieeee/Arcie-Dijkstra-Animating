@@ -34,7 +34,7 @@ public class Graphics2d extends JFrame {
     }
     
     public void Startup(Nodes[][] Info, int[][] linePos, Algorithm Algorithm){
-        this.Info=Info; this.linePos=linePos; fillrectarray();
+        this.Info=Info; this.linePos=linePos; fillrectarray(); manualpaint();
     }
 
     private BufferedImage offScreenImage;

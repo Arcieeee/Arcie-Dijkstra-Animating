@@ -54,14 +54,12 @@ public class Nodes
       Connections[Node.Identity].AddConnections(this, weight);
   }
   
-  public void GenerateRandomNumber(int times){
+  public int GenerateRandomNumber(){
       int j=0;
-      while(j<times){
-      double num=Math.random()*10+0.5;
+      
+      double num=Math.random()*800+0.5;
       int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10
-      System.out.println(numInt);
-      j++;
-    }
+      return numInt;
   }
   
   public void SetPosition(int x, int y){

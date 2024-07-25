@@ -31,21 +31,18 @@ public class Algorithm
     }
     
     public void DetermineConnections(int number){
-      for(int i=1; i<number-1; i++){
-        double num=Math.random()*10+0.5;
-        int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10    
-        
-        Start.ExtendedAddConnections(ArrayNodes[i][0], numInt);
-        
-        num=Math.random()*10+0.5;
-        numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10    
-        
-        End.ExtendedAddConnections(ArrayNodes[i][0], numInt);
+      linePos = new int[(number-2)*2][6];
+      int j=0; int ran;
+        for(int i=1; i<number-1; i++){ 
+        ran = ArrayNodes[i][0].GenerateRandomNumber()/8;
+        Start.ExtendedAddConnections(ArrayNodes[i][0], ran); linePos[j][0]=Start.xPos; linePos[j][1]=Start.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=ran; linePos[j][5]=0;
+        ran = ArrayNodes[i][0].GenerateRandomNumber()/8; j++;
+        End.ExtendedAddConnections(ArrayNodes[i][0], ran); linePos[j][0]=End.xPos; linePos[j][1]=End.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=ran; linePos[j][5]=0; j++;
       }
     }
     
     public Nodes ReturnNode(int NodeIdentity){
-        System.out.println(ArrayNodes[NodeIdentity][0].Identity);
+       System.out.println(ArrayNodes[NodeIdentity][0].Identity);
         return ArrayNodes[NodeIdentity][0];
     }
     
@@ -57,24 +54,23 @@ public class Algorithm
     }
     
     public void SetNodeNumber(int number){
-        // initialise instance variables
-       // System.out.println("Number of Nodes? (integer)"); //Prompts user for number of nodes
-       // keyboard=new Scanner(System.in);
-       // number=keyboard.nextInt(); //retrieves value
-        
-        ArrayNodes = new Nodes[number][2]; //Sets ArrayNodes to an array containing Nodes of length requested
+        ArrayNodes = new Nodes[number][1]; //Sets ArrayNodes to an array containing Nodes of length requested
         
         for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
         {ArrayNodes[i][0]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-         ArrayNodes[i][0].InitialiseConnections(number);} //This Initializes connections of each node. Using my automatic connection scheme
+         ArrayNodes[i][0].InitialiseConnections(number); //This Initializes connections of each node. Using my automatic connection scheme
+         ArrayNodes[i][0].SetPosition(ArrayNodes[i][0].GenerateRandomNumber(), ArrayNodes[i][0].GenerateRandomNumber());}
+         
        
         Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
         End = ArrayNodes[number-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
           
         for (int i=0; i<number; i++){System.out.println(ArrayNodes[i][0].Identity);}
+        System.out.println("Done!");
         DetermineConnections(number);
         this.number=number;
         System.out.println("Done!");
+        if(myGraphic==null){myGraphic = new Graphics2d(ArrayNodes, linePos, this);}else{myGraphic.Startup(ArrayNodes, linePos, this);}
     }
     
     public void ImportGraph(String[][] nodes, String[][] connections){
@@ -107,7 +103,7 @@ public class Algorithm
        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
        End = ArrayNodes[nodes.length-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
        
-       
+       if(myGraphic==null){myGraphic = new Graphics2d(ArrayNodes, linePos, this);}else{myGraphic.Startup(ArrayNodes, linePos, this);}
     }
     
     public void SetDistanceChecker(DistanceChecker a){
