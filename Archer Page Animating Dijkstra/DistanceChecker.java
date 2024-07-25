@@ -51,18 +51,16 @@ public class DistanceChecker
                 if(x==0){ //if we have a connection
 
                     if(IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
-
                         IdentityDistance[Current.Connections[i].Identity][Status] = visited; //Set node Status to visited
                         IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]; //Update Search Distance
                         IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
-
+                        myGraphic.linePos[Current.ConnectionsID[i]][5]=1; myGraphic.repaint(); System.out.println("Checked Connection ID "+Current.ConnectionsID[i]);
                     }
-
                     if(CurrentDistance == IdentityDistance[Current.Identity][SearchDistance])
                         CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1];  //If this is the first branch from the node, set Current Distance to the new distance.
                     else if (CurrentDistance > IdentityDistance[Current.Connections[i].Identity][SearchDistance])
                         CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1]; //else if the distance travelled is larger that previously known largest distance, update distance.
-
+                    
                 } i++;
             }
 

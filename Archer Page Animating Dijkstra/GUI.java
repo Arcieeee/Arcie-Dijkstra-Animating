@@ -76,7 +76,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm();
               break;
-         case "Import Graph" : InD Import = new InD("Graph?"); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); processImport(Graph); 
+         case "Import Graph" : InD Import = new InD("Graph Format: Number of Nodes,Node1,Node1XPos,Node1YPos etc...,Number of Edges,Edge1Start,Edge1End,Weight etc..."); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); processImport(Graph); 
               break;
          case "Paint" : animation.repaint();
               break;

@@ -10,6 +10,7 @@ public class Nodes
     // instance variables - replace the example below with your own
   public int[] distance;
   public Nodes[] Connections;
+  public int[] ConnectionsID;
   public int Identity;
   public String Name;
   public int xPos;
@@ -43,7 +44,7 @@ public class Nodes
   }
 
   public void InitialiseConnections(int x){
-      Connections = new Nodes[x];
+      Connections = new Nodes[x]; ConnectionsID = new int[x];
       distance = new int[x]; 
       for(int i=0; i<x; i++){distance[i]=2147483647;}
   }

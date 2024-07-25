@@ -50,7 +50,7 @@ public class Algorithm
     }
     
     public void RunAlgorithm(){
-       myGraphic = new Graphics2d(ArrayNodes, linePos);
+       if(myGraphic==null){myGraphic = new Graphics2d(ArrayNodes, linePos, this);}else{myGraphic.Startup(ArrayNodes, linePos, this);}
        DistanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker
        DistanceChecker.setAlgorithm(this); //inform the distance checker that this is the algorithm
        System.out.println(DistanceChecker.Path(Start, End)); //prints out the distance value
@@ -80,7 +80,7 @@ public class Algorithm
     public void ImportGraph(String[][] nodes, String[][] connections){
        ArrayNodes = new Nodes[nodes.length][1]; //Sets ArrayNodes to an array containing Nodes of length requested
        Names = new String[nodes.length];
-       linePos = new int[connections.length][5];
+       linePos = new int[connections.length][6];
         for(int i=0;i<nodes.length;i++){
            ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].InitialiseConnections(nodes.length); ArrayNodes[i][0].Name = nodes[i][0]; ArrayNodes[i][0].SetPosition(Integer.parseInt(nodes[i][1]), Integer.parseInt(nodes[i][2]));
            Names[i] = nodes[i][0];
@@ -97,7 +97,8 @@ public class Algorithm
         while(!connections[j][1].equals(Names[i])){
            i++;
         }
-        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); linePos[j][0]=ArrayNodes[k][0].xPos; linePos[j][1]=ArrayNodes[k][0].yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]);
+        ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); ArrayNodes[k][0].ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[ArrayNodes[k][0].Identity]=j;
+        linePos[j][0]=ArrayNodes[k][0].xPos; linePos[j][1]=ArrayNodes[k][0].yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]); linePos[j][5]=0;
         i=0; 
         }
     
