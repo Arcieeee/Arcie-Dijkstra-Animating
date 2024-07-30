@@ -36,13 +36,15 @@ public class Algorithm
             int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10 for weight
 
             Start.ExtendedAddConnections(ArrayNodes[i][0], numInt); //Adds start to Specified node that is not the start or end with specified weight
-            linePos[j][0]=Start.xPos; linePos[j][1]=Start.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; j++;
+            linePos[j][0]=Start.xPos; linePos[j][1]=Start.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
+            Start.ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[Start.Identity]=j; j++;
 
             num=Math.random()*10+0.5;
             numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10 for weight  
 
             End.ExtendedAddConnections(ArrayNodes[i][0], numInt); //Adds end to Specified node that is not the start or end with specified weight
-            linePos[j][0]=End.xPos; linePos[j][1]=End.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; j++;
+            linePos[j][0]=End.xPos; linePos[j][1]=End.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
+            Start.ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[Start.Identity]=j; j++;
         }
     }
 
