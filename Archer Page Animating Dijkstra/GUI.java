@@ -45,6 +45,8 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         
         menu3 = new JMenu("Sample Graphs"); menuBar.add(menu3); //Define Menu 3
         menuItem=new JMenuItem("Sample 1"); menuItem.addActionListener(this); menu3.add(menuItem);
+        menuItem=new JMenuItem("Sample 2"); menuItem.addActionListener(this); menu3.add(menuItem);
+        
         
         JPanel panel = new JPanel(); //panel for canvas
         panel.setPreferredSize(new Dimension(400, 400)); //Size
@@ -80,7 +82,9 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Paint" : animation.repaint(); //Paint. (Useless at the moment)
               break;
-         case "Sample 1" : String Sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(Sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
+         case "Sample 1" : String Sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(Sample1); System.out.println("Sample input:"+Sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
+              break;
+         case "Sample 2" : String Sample2 ="5,WellingtonCity,400,650,Porirua,200,300,Petone,550,450,Eastbourne,810,650,Upper Hutt,700,200,6,WellingtonCity,Porirua,150,WellingtonCity,Petone,100,Porirua,Petone,200,Porirua,Upper Hutt,300,Petone,Upper Hutt,150,Petone,Eastbourne,100"; processImport(Sample2); System.out.println("Sample input:"+Sample2); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;
          default : System.out.println(cmd+" is better than the other menu item..."); //Incase you somehow picked something else
        }
