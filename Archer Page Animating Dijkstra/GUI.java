@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 public class Gui extends JFrame implements ActionListener,MouseListener
 { 
     JMenuBar menuBar; //Create Menu Bar
-    JMenu menu; JMenu menu2; JMenu menu3; //Create menu's 1, 2 and, 3
+    JMenu menu; JMenu menu2; JMenu menu3; JMenu menu4; //Create menu's 1, 2, 3 and, 4
     JMenuItem menuItem; //Create menuItem
     Canvas myGraphic; //Create canvas
     
@@ -30,23 +30,25 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         menuBar=new JMenuBar();
         this.setJMenuBar(menuBar); //Initialize Menu Bar
         
-        menu = new JMenu("Algorithm menu"); menuBar.add(menu); //Define Menu 1
+        menu2 = new JMenu("File"); menuBar.add(menu2); //Define Menu 2
+        menuItem=new JMenuItem("Quit"); menuItem.setAccelerator(KeyStroke.getKeyStroke("ESCAPE")); menuItem.addActionListener(this); menu2.add(menuItem); //Add Menu Item
+        
+        //Define Menu 1
+        menu = new JMenu("Algorithm menu"); menuBar.add(menu);
         
         //Add Menu Items
         menuItem=new JMenuItem("Random Graph Generation"); menuItem.addActionListener(this);  menu.add(menuItem);
         menuItem=new JMenuItem("Import Graph"); menuItem.addActionListener(this); menu.add(menuItem);
         menuItem=new JMenuItem("Run Algorithm"); menuItem.addActionListener(this); menu.add(menuItem);
-        menuItem=new JMenuItem("Paint"); menuItem.addActionListener(this); menu.add(menuItem);
         
-        menu2 = new JMenu("File"); menuBar.add(menu2); //Define Menu 2
+        //Define Menu 3
+        menu3 = new JMenu("Sample Graphs"); menuBar.add(menu3); 
+        menuItem=new JMenuItem("Sample 1"); menuItem.addActionListener(this); menu3.add(menuItem); //Menu Items
+        menuItem=new JMenuItem("Sample 2"); menuItem.addActionListener(this); menu3.add(menuItem); //Menu Items
         
-        //Add Menu Item
-        menuItem=new JMenuItem("Quit"); menuItem.setAccelerator(KeyStroke.getKeyStroke("ESCAPE")); menuItem.addActionListener(this); menu2.add(menuItem);
         
-        menu3 = new JMenu("Sample Graphs"); menuBar.add(menu3); //Define Menu 3
-        menuItem=new JMenuItem("Sample 1"); menuItem.addActionListener(this); menu3.add(menuItem);
-        menuItem=new JMenuItem("Sample 2"); menuItem.addActionListener(this); menu3.add(menuItem);
-        
+        menu4 = new JMenu("Graphics Menu"); menuBar.add(menu4); //Define Menu 4
+        menuItem=new JMenuItem("Paint"); menuItem.addActionListener(this); menu4.add(menuItem); //Menu Item
         
         JPanel panel = new JPanel(); //panel for canvas
         panel.setPreferredSize(new Dimension(400, 400)); //Size
@@ -80,7 +82,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Import Graph" : InD Import = new InD("Graph format:# of Nodes,Node1,xPos1,xPos2,Node2 etc...,# of Edges,Edge1Start,Edge1End,Weight,Edge2Start etc..."); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); if(Graph==null){System.out.println("No Input");}else{processImport(Graph);} //Get User input, Call Process method for input
               break;
-         case "Paint" : if(Algorithm.myGraphic==null){Algorithm.myGraphic = new Graphics2d(Algorithm.ArrayNodes, Algorithm.linePos, Algorithm);} else {Algorithm.myGraphic.startup(Algorithm.ArrayNodes, Algorithm.linePos);} animation.repaint(); //Paint.
+         case "Paint" : if(Algorithm.myGraphic==null){if(Algorithm.linePos!=null){try{Algorithm.myGraphic = new Graphics2d(Algorithm.ArrayNodes, Algorithm.linePos, Algorithm); Algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}}} else {try{Algorithm.myGraphic.startup(Algorithm.ArrayNodes, Algorithm.linePos); Algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}} 
               break;
          case "Sample 1" : String Sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(Sample1); System.out.println("Sample input:"+Sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;

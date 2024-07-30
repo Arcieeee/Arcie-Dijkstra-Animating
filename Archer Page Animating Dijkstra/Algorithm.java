@@ -19,7 +19,7 @@ public class Algorithm
     public String[] Names; //Array to hold Nodes' Names
     public DistanceChecker DistanceChecker; //The actual Dijkstra's Algorithm part
     Graphics2d myGraphic; //Graphic so Algorithm can Interact with Graphic
-    public int[][] linePos; //Int array to hold Line Positions for future use
+    public int[][] linePos = null; //Int array to hold Line Positions for future use
 
     /**
      * Constructor for objects of class Algorithm
