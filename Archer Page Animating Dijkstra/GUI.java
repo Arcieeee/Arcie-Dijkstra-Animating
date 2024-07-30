@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 public class Gui extends JFrame implements ActionListener,MouseListener
 { 
     JMenuBar menuBar; //Create Menu Bar
-    JMenu menu; JMenu menu2; //Create menu's 1 and 2
+    JMenu menu; JMenu menu2; JMenu menu3; //Create menu's 1, 2 and, 3
     JMenuItem menuItem; //Create menuItem
     Canvas myGraphic; //Create canvas
     
@@ -33,15 +33,18 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         menu = new JMenu("Algorithm menu"); menuBar.add(menu); //Define Menu 1
         
         //Add Menu Items
-        menuItem=new JMenuItem("Run Algorithm"); menuItem.addActionListener(this); menu.add(menuItem);
-        menuItem=new JMenuItem("Set Number of Nodes"); menuItem.addActionListener(this);  menu.add(menuItem);
+        menuItem=new JMenuItem("Random Graph Generation"); menuItem.addActionListener(this);  menu.add(menuItem);
         menuItem=new JMenuItem("Import Graph"); menuItem.addActionListener(this); menu.add(menuItem);
+        menuItem=new JMenuItem("Run Algorithm"); menuItem.addActionListener(this); menu.add(menuItem);
         menuItem=new JMenuItem("Paint"); menuItem.addActionListener(this); menu.add(menuItem);
         
         menu2 = new JMenu("File"); menuBar.add(menu2); //Define Menu 2
         
         //Add Menu Item
         menuItem=new JMenuItem("Quit"); menuItem.setAccelerator(KeyStroke.getKeyStroke("ESCAPE")); menuItem.addActionListener(this); menu2.add(menuItem);
+        
+        menu3 = new JMenu("Sample Graphs"); menuBar.add(menu3); //Define Menu 3
+        menuItem=new JMenuItem("Sample 1"); menuItem.addActionListener(this); menu3.add(menuItem);
         
         JPanel panel = new JPanel(); //panel for canvas
         panel.setPreferredSize(new Dimension(400, 400)); //Size
@@ -69,13 +72,15 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         switch (cmd){ //Switch statement to determine what action it is
          case "Quit" : exit(); //Exit program when requested
               break;
-         case "Set Number of Nodes" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); int r = Integer.parseInt(reply); Algorithm.SetNodeNumber(r); //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
+         case "Random Graph Generation" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); int r = Integer.parseInt(reply); Algorithm.SetNodeNumber(r); //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
               break;
          case "Run Algorithm" : Algorithm.RunAlgorithm(); //Run Algorithm
               break;
          case "Import Graph" : InD Import = new InD("Graph format:# of Nodes,Node1,xPos1,xPos2,Node2 etc...,# of Edges,Edge1Start,Edge1End,Weight,Edge2Start etc..."); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); if(Graph==null){System.out.println("No Input");}else{processImport(Graph);} //Get User input, Call Process method for input
               break;
          case "Paint" : animation.repaint(); //Paint. (Useless at the moment)
+              break;
+         case "Sample 1" : String Sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(Sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;
          default : System.out.println(cmd+" is better than the other menu item..."); //Incase you somehow picked something else
        }

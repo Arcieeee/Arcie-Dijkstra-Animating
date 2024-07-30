@@ -14,7 +14,7 @@ public class InD extends JDialog
     public InD(String question){ //Constuctor
         super (new JFrame(question), question);
         this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE); //Closes when user inputs something
-        this.setMinimumSize(new Dimension(question.length()*7, 100)); //Size of Popup
+        this.setMinimumSize(new Dimension(question.length()*7+100, 100)); //Size of Popup
         JTextField reply=new JTextField(); //Initialize Popup
         JButton clickMe = new JButton("enter"); //Button to enter input
         clickMe.addActionListener(new ActionListener() { //When the button is clicked
