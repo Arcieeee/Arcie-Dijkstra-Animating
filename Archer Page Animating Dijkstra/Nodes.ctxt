@@ -1,9 +1,8 @@
 #BlueJ class context
 comment0.target=Nodes
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Nodes\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ Nodes\ class.\ Responsible\ for\ being\ the\ Graph.\r\n\r\n\ Archer\r\n\ 30/07/2024\r\n
 comment1.params=Identity
 comment1.target=Nodes(int)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Nodes\r\n
 comment2.params=
 comment2.target=void\ RandomNumOld()
 comment3.params=Node\ weight
@@ -13,7 +12,7 @@ comment4.target=void\ InitialiseConnections(int)
 comment5.params=Node\ weight
 comment5.target=void\ ExtendedAddConnections(Nodes,\ int)
 comment6.params=
-comment6.target=int\ GenerateRandomNumber()
+comment6.target=void\ generateRandomNumber()
 comment7.params=x\ y
 comment7.target=void\ SetPosition(int,\ int)
 numComments=8

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=DistanceChecker
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ DistanceChecker\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ End.Identity\ or\ a\ date)\r\n
+comment0.text=\r\n\ This\ is\ the\ class\ that\ runs\ Dijkstra's\ algorithm\ on\ the\ specified\ graph\ given.\r\n\r\n\ Archer\ Page\r\n\ 30/07/2024\r\n
 comment1.params=myGraphic
 comment1.target=DistanceChecker(Graphics2d)
 comment2.params=Algorithm

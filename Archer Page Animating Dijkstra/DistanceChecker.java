@@ -3,26 +3,26 @@ import java.awt.*;
 import java.awt.event.*; // Listener
 import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 /**
- * Write a description of class DistanceChecker here.
+ * This is the class that runs Dijkstra's algorithm on the specified graph given.
  *
- * @author (your name)
- * @version (a version End.Identity or a date)
+ * Archer Page
+ * 30/07/2024
  */
 public class DistanceChecker
 {
-    public Nodes Current = null;
-    public Algorithm Algorithm = null;
-    Graphics2d myGraphic;
+    public Nodes Current = null; //Current Node
+    public Algorithm Algorithm = null; //Algorithm so they can talk
+    Graphics2d myGraphic; //Graphic so they can talk
 
-    public DistanceChecker(Graphics2d myGraphic){
+    public DistanceChecker(Graphics2d myGraphic){ //Upon construction update Graphic
         this.myGraphic=myGraphic;
     }
 
-    public void setAlgorithm(Algorithm Algorithm){
+    public void setAlgorithm(Algorithm Algorithm){ //Update Algorithm
         this.Algorithm = Algorithm;
     }
 
-    public int Path(Nodes Start, Nodes End){
+    public int Path(Nodes Start, Nodes End){ //When asked to find the shortest Path Between 2 nodes, this method works out the shortest distance
        
         Current = Start; //Sets the Current searched node to the start
         int CurrentDistance = 0; //initialize Distance
