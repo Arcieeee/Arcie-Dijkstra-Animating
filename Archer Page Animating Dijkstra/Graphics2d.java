@@ -59,7 +59,7 @@ public class Graphics2d extends JFrame {
         g2.setColor(Color.BLACK);
         
         for(int i=0; i<linePos.length; i++){
-            if(linePos[i][5]==1){g2.setColor(Color.RED);} else {g2.setColor(Color.BLACK);} //If this Line has been traversed, paint it red, else paint it black
+            if(linePos[i][5]==0){g2.setColor(Color.BLACK);} else {g2.setColor(Color.RED); if(linePos[i][5]==2){g2.setColor(Color.BLUE);}} //If this Line has been traversed, paint it red, else paint it black
             g2.drawLine(linePos[i][0]+31, linePos[i][1]+31, linePos[i][2]+31, linePos[i][3]+31); //Draw Line
             g2.drawString(linePos[i][4]+"", ((linePos[i][0]+linePos[i][2])/2)+31, ((linePos[i][1]+linePos[i][3])/2)+31); //Draws Weight 
         }

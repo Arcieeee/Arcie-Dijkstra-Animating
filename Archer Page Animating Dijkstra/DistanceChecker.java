@@ -23,10 +23,10 @@ public class DistanceChecker
     }
 
     public int Path(Nodes Start, Nodes End){ //When asked to find the shortest Path Between 2 nodes, this method works out the shortest distance
-       
+
         Current = Start; //Sets the Current searched node to the start
         int CurrentDistance = 0; //initialize Distance
-        int[][] IdentityDistance = new int[End.Identity+1][3]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
+        int[][] IdentityDistance = new int[End.Identity+1][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
         int unvisited=0; int visited=1; int searched=2; int Status=0; int SearchDistance=1; int TrueDistance=2;
 
         for(int i=1; i<End.Identity+1; i++){
@@ -49,18 +49,18 @@ public class DistanceChecker
                 }
 
                 if(x==0){ //if we have a connection
-
                     if(IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
                         IdentityDistance[Current.Connections[i].Identity][Status] = visited; //Set node Status to visited
                         IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]; //Update Search Distance
                         IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
+                        IdentityDistance[Current.Connections[i].Identity][3]=Current.Identity;
                         myGraphic.linePos[Current.ConnectionsID[i]][5]=1; myGraphic.repaint(); System.out.println("Checked Connection ID "+Current.ConnectionsID[i]);
                     }
                     if(CurrentDistance == IdentityDistance[Current.Identity][SearchDistance])
                         CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1];  //If this is the first branch from the node, set Current Distance to the new distance.
+
                     else if (CurrentDistance > IdentityDistance[Current.Connections[i].Identity][SearchDistance])
-                        CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1]; //else if the distance travelled is larger that previously known largest distance, update distance.
-                    
+                        CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1]; //else if the distance travelled is smaller that previously known largest distance, update distance.
                 } i++;
             }
 
@@ -78,6 +78,11 @@ public class DistanceChecker
             else {Current = End;} //Current = Node with that identity.
 
             i=0;
+        }
+        
+        while(Current!=Start){
+            myGraphic.linePos[Current.ConnectionsID[IdentityDistance[Current.Identity][3]]][5]=2;
+            Current=Algorithm.ArrayNodes[IdentityDistance[Current.Identity][3]][0];
         }
         return CurrentDistance;
     }
