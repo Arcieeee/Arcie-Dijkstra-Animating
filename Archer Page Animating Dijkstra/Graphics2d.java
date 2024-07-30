@@ -68,7 +68,7 @@ public class Graphics2d extends JFrame {
     public void paintrect(Graphics2D g2){ //Rectangle Paint Method
         for (int i=0; i<Info.length; i++){
             g2.setColor(Color.BLACK); g2.fillRect(rectPositions[i][0],rectPositions[i][1], 80, 63); //Draws Nodes specified as rect
-            int nameLength=Info[i][0].Name.length(); System.out.println("Name Length"+nameLength);
+            int nameLength=Info[i][0].Name.length(); 
             g2.setColor(Color.RED); g2.drawString(Info[i][0].Name, ((rectPositions[i][0]+43)-(nameLength*3)),rectPositions[i][1]+32); //Adds Name on Nodes Drawn
         }
     }

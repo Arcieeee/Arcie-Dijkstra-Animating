@@ -80,7 +80,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Import Graph" : InD Import = new InD("Graph format:# of Nodes,Node1,xPos1,xPos2,Node2 etc...,# of Edges,Edge1Start,Edge1End,Weight,Edge2Start etc..."); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); if(Graph==null){System.out.println("No Input");}else{processImport(Graph);} //Get User input, Call Process method for input
               break;
-         case "Paint" : animation.repaint(); //Paint. (Useless at the moment)
+         case "Paint" : if(Algorithm.myGraphic==null){Algorithm.myGraphic = new Graphics2d(Algorithm.ArrayNodes, Algorithm.linePos, Algorithm);} else {Algorithm.myGraphic.startup(Algorithm.ArrayNodes, Algorithm.linePos);} animation.repaint(); //Paint.
               break;
          case "Sample 1" : String Sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(Sample1); System.out.println("Sample input:"+Sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;
