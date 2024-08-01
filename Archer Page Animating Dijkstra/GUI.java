@@ -90,9 +90,9 @@ public class Gui extends JFrame implements ActionListener,MouseListener
               break;
          case "Sample 2" : String sample2 ="5,WellingtonCity,400,650,Porirua,200,300,Petone,550,450,Eastbourne,810,650,Upper Hutt,700,200,6,WellingtonCity,Porirua,150,WellingtonCity,Petone,100,Porirua,Petone,200,Porirua,Upper Hutt,300,Petone,Upper Hutt,150,Petone,Eastbourne,100"; processImport(sample2); System.out.println("Sample input:"+sample2); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;
-         case "Set Start Node" : InD startID= new InD("ID of start node?"); startID.setLocationRelativeTo(this); startID.setVisible(true); String replyStartID = startID.getText(); int startIDInt = Integer.parseInt(replyStartID); algorithm.start=algorithm.arrayNodes[startIDInt][0];
+         case "Set Start Node" : InD startName= new InD("Name of start node?"); startName.setLocationRelativeTo(this); startName.setVisible(true); String replyStartName = startName.getText(); int startIDInt = nameToID(replyStartName); try{algorithm.start=algorithm.arrayNodes[startIDInt][0]; System.out.println("Set start node to "+replyStartName);} catch (Exception e){System.out.println("No node with that name");}
               break;
-         case "Set End Node" : InD endID= new InD("ID of end node?"); endID.setLocationRelativeTo(this); endID.setVisible(true); String replyEndID = endID.getText(); int endIDInt = Integer.parseInt(replyEndID); algorithm.end=algorithm.arrayNodes[endIDInt][0];
+         case "Set End Node" : InD endName= new InD("Name of end node?"); endName.setLocationRelativeTo(this); endName.setVisible(true); String replyEndName = endName.getText(); int endIDInt = nameToID(replyEndName); try{algorithm.end=algorithm.arrayNodes[endIDInt][0]; System.out.println("Set end node to "+replyEndName);} catch (Exception e){System.out.println("No node with that name");}
               break;
          default : System.out.println(cmd+" is better than the other menu item..."); //Incase you somehow picked something else
        }
@@ -100,6 +100,14 @@ public class Gui extends JFrame implements ActionListener,MouseListener
     
     public void exit(){ //exit
         System.exit(0);
+    }
+    
+    public int nameToID(String name){ //Takes a name and returns the corrosponding id for the node with that name
+        int i=0; if(algorithm.arrayNodes==null){return -1;} //if there are no nodes, returns -1 to invoke error message to play
+        for(i=0; i<algorithm.arrayNodes.length;i++){
+            if(algorithm.arrayNodes[i][0].name.equals(name)){break;} //If they are the same, exit out of the for loop
+        }
+        return i; //returns the node with the correct id, or an id that doesn't corrospond to any node
     }
     
     public void processImport(String userImport) //Method that allows user to import graphs
