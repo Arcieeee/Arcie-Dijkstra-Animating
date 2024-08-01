@@ -31,6 +31,7 @@ public class DistanceChecker
 
         for(int i=0; i<algorithm.arrayNodes.length; i++){
             identityDistance[i][status] = 0;
+            myGraphic.linePos[current.connectionsID[i]][5]=0;
             identityDistance[i][searchDistance] = 2147483647; //sets everything in row 1 to 0; row 2 and 3 to max int.
             identityDistance[i][trueDistance] = 2147483647;
         }
@@ -74,7 +75,7 @@ public class DistanceChecker
                 if(identityDistance[i][searchDistance]<=currentDistance){
                     x=i; currentDistance=identityDistance[i][searchDistance];}} 
 
-            if (x!=end.identity) //if we are not at the end
+            if (x!=end.identity&&currentDistance!=2147483647) //if we are not at the end or max distance
             {current = algorithm.arrayNodes[x][0];} 
             else {current = end;} //current = Node with that identity.
 
