@@ -102,20 +102,23 @@ public class Algorithm
         
         int h=0; int i=0; int j=0; int k=0; //Variables for use below
         
-        for(j=0; j<connections.length; j++){ //For however many connections we have
-            while(!connections[j][0].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
-                i++; //Increase counter by 1
+        try{
+            for(j=0; j<connections.length; j++){ //For however many connections we have
+                while(!connections[j][0].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
+                    i++; //Increase counter by 1
+                }
+                k=i; i=0;
+                while(!connections[j][1].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
+                    i++; //Increase counter by 1
+                }
+                //Updates LinePosition to corrosponding values, and connects the specified 2 nodes and updates each nodes connection array, aswell as this Algorithms Node array.
+                arrayNodes[k][0].extendedAddConnections(arrayNodes[i][0], Integer.parseInt(connections[j][2])); arrayNodes[k][0].connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[arrayNodes[k][0].identity]=j;
+                linePos[j][0]=arrayNodes[k][0].xPos; linePos[j][1]=arrayNodes[k][0].yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]); linePos[j][5]=0;
+                i=0; 
             }
-            k=i; i=0;
-            while(!connections[j][1].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
-                i++; //Increase counter by 1
-            }
-            //Updates LinePosition to corrosponding values, and connects the specified 2 nodes and updates each nodes connection array, aswell as this Algorithms Node array.
-            arrayNodes[k][0].extendedAddConnections(arrayNodes[i][0], Integer.parseInt(connections[j][2])); arrayNodes[k][0].connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[arrayNodes[k][0].identity]=j;
-            linePos[j][0]=arrayNodes[k][0].xPos; linePos[j][1]=arrayNodes[k][0].yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]); linePos[j][5]=0;
-            i=0; 
-        }
-
+        } catch (Exception e){System.out.println("A Connection does not exist, any subsequent connections present have been ignored");}
+        
+        
         try{start = arrayNodes[0][0]; //Sets start Node equal to Node with identity 0
             end = arrayNodes[nodes.length-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
             System.out.println("Done"); //Done!
