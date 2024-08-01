@@ -54,10 +54,12 @@ public class Algorithm
     }
 
     public void runAlgorithm(){ //When asked to Run Dijkstra's algorithm
+        if(arrayNodes!=null){
         if(myGraphic==null){myGraphic = new Graphics2d(arrayNodes, linePos, this);} else {myGraphic.startup(arrayNodes, linePos);}//Update MyGraphic so it can draw the output of the algorithm
         distanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker to run Dijkstra's algorithm
         distanceChecker.setAlgorithm(this); //Inform the distance checker that this is the algorithm
         System.out.println("The shortest path is "+distanceChecker.path(start, end)+" long"); //prints out the distance value to the console
+      } else{System.out.println("No graph to run algorithm on");}
     }
 
     public void setNodeNumber(int number){ //When asked to create a specified number of nodes

@@ -70,7 +70,7 @@ public class Graphics2d extends JFrame {
         for (int i=0; i<info.length; i++){
             g2.setColor(Color.BLACK); g2.fillRect(rectPositions[i][0],rectPositions[i][1], 80, 63); //Draws Nodes specified as rect
             int nameLength=info[i][0].name.length(); 
-            g2.setColor(Color.RED); g2.drawString(info[i][0].name, ((rectPositions[i][0]+43)-(nameLength*3)),rectPositions[i][1]+32); //Adds Name on Nodes Drawn
+            g2.setColor(Color.WHITE); g2.drawString(info[i][0].name, ((rectPositions[i][0]+43)-(nameLength*3)),rectPositions[i][1]+32); //Adds Name on Nodes Drawn
         }
     }
     
