@@ -11,13 +11,13 @@ import java.util.Scanner; // Keyboard input.
  */
 public class Algorithm
 {
-    public Nodes Start; //Creates Start Node
-    public Nodes End; //Creates End Node
-    public Nodes[][] ArrayNodes; //Creates an array of nodes.
+    public Nodes start; //Creates start Node
+    public Nodes end; //Creates end Node
+    public Nodes[][] arrayNodes; //Creates an array of nodes.
     public int number; //Integer when requested to do things a certain number of times
     Scanner keyboard; //Keyboard
-    public String[] Names; //Array to hold Nodes' Names
-    public DistanceChecker DistanceChecker; //The actual Dijkstra's Algorithm part
+    public String[] names; //Array to hold Nodes' names
+    public DistanceChecker distanceChecker; //The actual Dijkstra's Algorithm part
     Graphics2d myGraphic; //Graphic so Algorithm can Interact with Graphic
     public int[][] linePos = null; //Int array to hold Line Positions for future use
 
@@ -29,38 +29,38 @@ public class Algorithm
         this.myGraphic=myGraphic; //Update Algorithm instance variable
     }
 
-    public void DetermineConnections(int number){ //When Asked to generate random connections
+    public void determineConnections(int number){ //When Asked to generate random connections
         int j=0;
         for(int i=1; i<number-1; i++){ //For the number of times equal to 2 minus the number of nodes
             double num=Math.random()*10+0.5;
             int numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10 for weight
 
-            Start.ExtendedAddConnections(ArrayNodes[i][0], numInt); //Adds start to Specified node that is not the start or end with specified weight
-            linePos[j][0]=Start.xPos; linePos[j][1]=Start.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
-            Start.ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[Start.Identity]=j; j++;
+            start.extendedAddConnections(arrayNodes[i][0], numInt); //Adds start to Specified node that is not the start or end with specified weight
+            linePos[j][0]=start.xPos; linePos[j][1]=start.yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
+            start.connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[start.identity]=j; j++;
 
             num=Math.random()*10+0.5;
             numInt = (int)Math.round(num); //Generates a random integer number between 1 and 10 for weight  
 
-            End.ExtendedAddConnections(ArrayNodes[i][0], numInt); //Adds end to Specified node that is not the start or end with specified weight
-            linePos[j][0]=End.xPos; linePos[j][1]=End.yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
-            Start.ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[Start.Identity]=j; j++;
+            end.extendedAddConnections(arrayNodes[i][0], numInt); //Adds end to Specified node that is not the start or end with specified weight
+            linePos[j][0]=end.xPos; linePos[j][1]=end.yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
+            start.connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[start.identity]=j; j++;
         }
     }
 
-    public Nodes ReturnNode(int NodeIdentity){ //Return Identity of a specified node
-        System.out.println(ArrayNodes[NodeIdentity][0].Identity); //Print to console
-        return ArrayNodes[NodeIdentity][0]; //Return
+    public Nodes returnNode(int nodeIdentity){ //Return identity of a specified node
+        System.out.println(arrayNodes[nodeIdentity][0].identity); //Print to console
+        return arrayNodes[nodeIdentity][0]; //Return
     }
 
-    public void RunAlgorithm(){ //When asked to Run Dijkstra's algorithm
-        if(myGraphic==null){myGraphic = new Graphics2d(ArrayNodes, linePos, this);} else {myGraphic.startup(ArrayNodes, linePos);}//Update MyGraphic so it can draw the output of the algorithm
-        DistanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker to run Dijkstra's algorithm
-        DistanceChecker.setAlgorithm(this); //Inform the distance checker that this is the algorithm
-        System.out.println("The shortest path is "+DistanceChecker.Path(Start, End)+" long"); //prints out the distance value to the console
+    public void runAlgorithm(){ //When asked to Run Dijkstra's algorithm
+        if(myGraphic==null){myGraphic = new Graphics2d(arrayNodes, linePos, this);} else {myGraphic.startup(arrayNodes, linePos);}//Update MyGraphic so it can draw the output of the algorithm
+        distanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker to run Dijkstra's algorithm
+        distanceChecker.setAlgorithm(this); //Inform the distance checker that this is the algorithm
+        System.out.println("The shortest path is "+distanceChecker.path(start, end)+" long"); //prints out the distance value to the console
     }
 
-    public void SetNodeNumber(int number){ //When asked to create a specified number of nodes
+    public void setNodeNumber(int number){ //When asked to create a specified number of nodes
         //Legacy Text-Based Input
         
         // initialise instance variables
@@ -68,62 +68,59 @@ public class Algorithm
         // keyboard=new Scanner(System.in);
         // number=keyboard.nextInt(); //retrieves value
 
-        ArrayNodes = new Nodes[number][1]; //Sets ArrayNodes to an array containing Nodes of length requested
+        arrayNodes = new Nodes[number][1]; //Sets arrayNodes to an array containing Nodes of length requested
         linePos = new int[(number-2)*2][6]; //And LinePos array to length requested
         
 
         for (int i=0; i<number; i++) //For However many times equal to the number of nodes;
-           {ArrayNodes[i][0]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
-            ArrayNodes[i][0].InitialiseConnections(number); //This Initializes connections of each node. Using my automatic connection scheme
-            ArrayNodes[i][0].Name =i+""; ArrayNodes[i][0].generateRandomNumber(); ArrayNodes[i][0].SetPosition(ArrayNodes[i][0].xran, ArrayNodes[i][0].yran);
+           {arrayNodes[i][0]=new Nodes(i); //Let each element in the Array equal a new node with the corrosponding identity.
+            arrayNodes[i][0].initialiseConnections(number); //This Initializes connections of each node. Using my automatic connection scheme
+            arrayNodes[i][0].name =i+""; arrayNodes[i][0].generateRandomNumber(); arrayNodes[i][0].setPosition(arrayNodes[i][0].xran, arrayNodes[i][0].yran);
         }
 
-        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[number-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
-
-        for (int i=0; i<number; i++){System.out.println(ArrayNodes[i][0].Identity);} //Print out each node's Indentity
+        start = arrayNodes[0][0]; //Sets start Node equal to Node with identity 0
+        end = arrayNodes[number-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
         
-        DetermineConnections(number); //Determine connections between each node
+        determineConnections(number); //Determine connections between each node
         this.number=number; //Save for later use
-        System.out.println("Done!"); //Done!
+        System.out.println("Done! Select Run Algorithm to view!"); //Done!
     }
 
-    public void ImportGraph(String[][] nodes, String[][] connections){ //Responsible for processing imports of a graph
-        ArrayNodes = new Nodes[nodes.length][1]; //Sets ArrayNodes to an array containing Nodes of length requested
-        Names = new String[nodes.length]; //And Name array to length requested
+    public void importGraph(String[][] nodes, String[][] connections){ //Responsible for processing imports of a graph
+        arrayNodes = new Nodes[nodes.length][1]; //Sets arrayNodes to an array containing Nodes of length requested
+        names = new String[nodes.length]; //And name array to length requested
         linePos = new int[connections.length][6]; //And LinePos array to length requested
         try{ //If the Node Information is done correctly, this should succeed
             for(int i=0;i<nodes.length;i++){
                 //Create Node, Initialize Nodes's connection array, and update name and set position of node according to info given.
-                ArrayNodes[i][0]=new Nodes(i); ArrayNodes[i][0].InitialiseConnections(nodes.length); ArrayNodes[i][0].Name = nodes[i][0]; ArrayNodes[i][0].SetPosition(Integer.parseInt(nodes[i][1]), Integer.parseInt(nodes[i][2]));
-                Names[i] = nodes[i][0];
+                arrayNodes[i][0]=new Nodes(i); arrayNodes[i][0].initialiseConnections(nodes.length); arrayNodes[i][0].name = nodes[i][0]; arrayNodes[i][0].setPosition(Integer.parseInt(nodes[i][1]), Integer.parseInt(nodes[i][2]));
+                names[i] = nodes[i][0];
             }
         } catch (Exception e) {System.out.println("Problem with Node Declaration");} //If try fails, Print Error message
         
         int h=0; int i=0; int j=0; int k=0; //Variables for use below
         
         for(j=0; j<connections.length; j++){ //For however many connections we have
-            while(!connections[j][0].equals(Names[i])){ //While our connections element doesn't equal the name of our selected node
-                System.out.println("String /"+connections[j][0]+"/ and String /"+Names[i]+"/ is different"); //Print out they are different
+            while(!connections[j][0].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
                 i++; //Increase counter by 1
             }
             k=i; i=0;
-            while(!connections[j][1].equals(Names[i])){ //While our connections element doesn't equal the name of our selected node
+            while(!connections[j][1].equals(names[i])){ //While our connections element doesn't equal the name of our selected node
                 i++; //Increase counter by 1
             }
             //Updates LinePosition to corrosponding values, and connects the specified 2 nodes and updates each nodes connection array, aswell as this Algorithms Node array.
-            ArrayNodes[k][0].ExtendedAddConnections(ArrayNodes[i][0], Integer.parseInt(connections[j][2])); ArrayNodes[k][0].ConnectionsID[ArrayNodes[i][0].Identity]=j; ArrayNodes[i][0].ConnectionsID[ArrayNodes[k][0].Identity]=j;
-            linePos[j][0]=ArrayNodes[k][0].xPos; linePos[j][1]=ArrayNodes[k][0].yPos; linePos[j][2]=ArrayNodes[i][0].xPos; linePos[j][3]=ArrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]); linePos[j][5]=0;
+            arrayNodes[k][0].extendedAddConnections(arrayNodes[i][0], Integer.parseInt(connections[j][2])); arrayNodes[k][0].connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[arrayNodes[k][0].identity]=j;
+            linePos[j][0]=arrayNodes[k][0].xPos; linePos[j][1]=arrayNodes[k][0].yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=Integer.parseInt(connections[j][2]); linePos[j][5]=0;
             i=0; 
         }
 
         System.out.println("Done"); //Done!
 
-        Start = ArrayNodes[0][0]; //Sets Start Node equal to Node with identity 0
-        End = ArrayNodes[nodes.length-1][0]; //Sets Start Node equal to Node with identity (Nodes requested - 1)
+        start = arrayNodes[0][0]; //Sets start Node equal to Node with identity 0
+        end = arrayNodes[nodes.length-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
 
     }
-    public void SetDistanceChecker(DistanceChecker a){ //Updates DistanceChecker variable so Algorithm can talk to DistanceChecker
-        DistanceChecker = a;
+    public void setDistanceChecker(DistanceChecker a){ //Updates DistanceChecker variable so Algorithm can talk to DistanceChecker
+        distanceChecker = a;
     }
 }

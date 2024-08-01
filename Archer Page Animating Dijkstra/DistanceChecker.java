@@ -10,80 +10,80 @@ import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
  */
 public class DistanceChecker
 {
-    public Nodes Current = null; //Current Node
-    public Algorithm Algorithm = null; //Algorithm so they can talk
+    public Nodes current = null; //current Node
+    public Algorithm algorithm = null; //Algorithm so they can talk
     Graphics2d myGraphic; //Graphic so they can talk
 
     public DistanceChecker(Graphics2d myGraphic){ //Upon construction update Graphic
         this.myGraphic=myGraphic;
     }
 
-    public void setAlgorithm(Algorithm Algorithm){ //Update Algorithm
-        this.Algorithm = Algorithm;
+    public void setAlgorithm(Algorithm algorithm){ //Update Algorithm
+        this.algorithm = algorithm;
     }
 
-    public int Path(Nodes Start, Nodes End){ //When asked to find the shortest Path Between 2 nodes, this method works out the shortest distance
+    public int path(Nodes start, Nodes end){ //When asked to find the shortest Path Between 2 nodes, this method works out the shortest distance
 
-        Current = Start; //Sets the Current searched node to the start
-        int CurrentDistance = 0; //initialize Distance
-        int[][] IdentityDistance = new int[End.Identity+1][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
-        int unvisited=0; int visited=1; int searched=2; int Status=0; int SearchDistance=1; int TrueDistance=2;
+        current = start; //Sets the current searched node to the start
+        int currentDistance = 0; //initialize Distance
+        int[][] identityDistance = new int[end.identity+1][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
+        int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2;
 
-        for(int i=1; i<End.Identity+1; i++){
-            IdentityDistance[i][Status] = 0;
-            IdentityDistance[i][SearchDistance] = 2147483647; //sets everything in row 1 to 0; row 2 and 3 to max int.
-            IdentityDistance[i][TrueDistance] = 2147483647;
+        for(int i=1; i<end.identity+1; i++){
+            identityDistance[i][status] = 0;
+            identityDistance[i][searchDistance] = 2147483647; //sets everything in row 1 to 0; row 2 and 3 to max int.
+            identityDistance[i][trueDistance] = 2147483647;
         }
 
-        IdentityDistance[0][SearchDistance] = 0; IdentityDistance[0][TrueDistance] = 0; //except for the start
+        identityDistance[0][searchDistance] = 0; identityDistance[0][trueDistance] = 0; //except for the start
 
         int i=0; //Counter = 0
         //at this point we have an array full of 0s and max int, and a start distance 0. 
 
-        while(Current != End){ //While we are not at the end
-            while(i<=End.Identity){  
+        while(current != end){ //While we are not at the end
+            while(i<=end.identity){  
 
                 int x=0;    
-                while(Current.Connections[i]==null&&x==0){ //Goes all the connections of the current node until it finds one, or until it runs out of connections to search
-                    i++; if (i>Current.Connections.length-1){i=Current.Connections.length-1; x=1;}
+                while(current.connections[i]==null&&x==0){ //Goes all the connections of the current node until it finds one, or until it runs out of connections to search
+                    i++; if (i>current.connections.length-1){i=current.connections.length-1; x=1;}
                 }
 
                 if(x==0){ //if we have a connection
-                    if(IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]<IdentityDistance[Current.Connections[i].Identity][TrueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
-                        IdentityDistance[Current.Connections[i].Identity][Status] = visited; //Set node Status to visited
-                        IdentityDistance[Current.Connections[i].Identity][SearchDistance] = IdentityDistance[Current.Identity][SearchDistance] + Current.distance[i]; //Update Search Distance
-                        IdentityDistance[Current.Connections[i].Identity][TrueDistance] = IdentityDistance[Current.Connections[i].Identity][SearchDistance]; //Set True Distance to Search Distance
-                        IdentityDistance[Current.Connections[i].Identity][3]=Current.Identity;
-                        myGraphic.linePos[Current.ConnectionsID[i]][5]=1; myGraphic.repaint(); System.out.println("Checked Connection ID "+Current.ConnectionsID[i]);
+                    if(identityDistance[current.identity][searchDistance] + current.distance[i]<identityDistance[current.connections[i].identity][trueDistance]){ //if the Search Distance to the node is less than the True Distance of the node
+                        identityDistance[current.connections[i].identity][status] = visited; //Set node status to visited
+                        identityDistance[current.connections[i].identity][searchDistance] = identityDistance[current.identity][searchDistance] + current.distance[i]; //Update Search Distance
+                        identityDistance[current.connections[i].identity][trueDistance] = identityDistance[current.connections[i].identity][searchDistance]; //Set True Distance to Search Distance
+                        identityDistance[current.connections[i].identity][3]=current.identity;
+                        myGraphic.linePos[current.connectionsID[i]][5]=1; myGraphic.repaint();
                     }
-                    if(CurrentDistance == IdentityDistance[Current.Identity][SearchDistance])
-                        CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1];  //If this is the first branch from the node, set Current Distance to the new distance.
+                    if(currentDistance == identityDistance[current.identity][searchDistance])
+                        currentDistance = identityDistance[current.connections[i].identity][1];  //If this is the first branch from the node, set current Distance to the new distance.
 
-                    else if (CurrentDistance > IdentityDistance[Current.Connections[i].Identity][SearchDistance])
-                        CurrentDistance = IdentityDistance[Current.Connections[i].Identity][1]; //else if the distance travelled is smaller that previously known largest distance, update distance.
+                    else if (currentDistance > identityDistance[current.connections[i].identity][searchDistance])
+                        currentDistance = identityDistance[current.connections[i].identity][1]; //else if the distance travelled is smaller that previously known largest distance, update distance.
                 } i++;
             }
 
             //At this point, we have evaluated all connections of the current Node.
-            IdentityDistance[Current.Identity][SearchDistance]=2147483647; //sets search distance to current node to max int to prevent it from being selected again unless a shorter path is found to it.
-            IdentityDistance[Current.Identity][Status]=searched;
+            identityDistance[current.identity][searchDistance]=2147483647; //sets search distance to current node to max int to prevent it from being selected again unless a shorter path is found to it.
+            identityDistance[current.identity][status]=searched;
             int x=0;
 
-            for(i=0; i<=End.Identity; i++){
-                if(IdentityDistance[i][SearchDistance]<=CurrentDistance){
-                    x=i; CurrentDistance=IdentityDistance[i][SearchDistance];}}
+            for(i=0; i<=end.identity; i++){
+                if(identityDistance[i][searchDistance]<=currentDistance){
+                    x=i; currentDistance=identityDistance[i][searchDistance];}}
 
-            if (x!=End.Identity) //if we are not at the end
-            {Current = Algorithm.ArrayNodes[x][0];} 
-            else {Current = End;} //Current = Node with that identity.
+            if (x!=end.identity) //if we are not at the end
+            {current = algorithm.arrayNodes[x][0];} 
+            else {current = end;} //current = Node with that identity.
 
             i=0;
         }
         
-        while(Current!=Start){
-            myGraphic.linePos[Current.ConnectionsID[IdentityDistance[Current.Identity][3]]][5]=2;
-            Current=Algorithm.ArrayNodes[IdentityDistance[Current.Identity][3]][0];
+        while(current!=start){
+            myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
+            current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
         }
-        return CurrentDistance;
+        return currentDistance;
     }
 }

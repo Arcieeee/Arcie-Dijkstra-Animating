@@ -7,5 +7,5 @@
  */
 public class Master
 {
-    Master(){Gui Gui = new Gui(1600, 800, "");} //Initialize gui to interact with program
+    Master(){Gui gui = new Gui(1600, 800, "");} //Initialize gui to interact with program
 }
