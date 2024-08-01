@@ -39,6 +39,7 @@ public class DistanceChecker
 
         int i=0; //Counter = 0
         //at this point we have an array full of 0s and max int, and a start distance 0. 
+        if(myGraphic.linePos.length==0&&current!=end){current=end; currentDistance=2147483647;}
 
         while(current != end){ //While we are not at the end
             while(i<=algorithm.arrayNodes.length-1){  
@@ -76,14 +77,17 @@ public class DistanceChecker
             if (x!=end.identity) //if we are not at the end
             {current = algorithm.arrayNodes[x][0];} 
             else {current = end;} //current = Node with that identity.
-
+            
             i=0;
         }
-
-        while(current!=start){
+        
+        if(currentDistance==2147483647){for(i=0;i<myGraphic.linePos.length;i++){myGraphic.linePos[i][5]=1;}}else{
+            while(current!=start){
             myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
             current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
         }
+        }
+        
         return currentDistance;
     }
 }
