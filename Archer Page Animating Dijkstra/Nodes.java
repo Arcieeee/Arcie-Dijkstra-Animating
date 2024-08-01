@@ -37,6 +37,7 @@ public class Nodes
   public void addConnections(Nodes node, int weight){ //Method that tells node to update connections array
       connections[node.identity] = node; distance[node.identity] = weight; //Connection [node ID] updated to connected node, corrosponsing distance array element updated to hold weight
       
+      //Legacy Console output that could give the user information about their graph.
       /**if(node.identity<identity) //Going from Earlier to Later when printing out Connection message
       *System.out.println("Connection "+node.name+" - "+name+" Initialized with weight "+distance[node.identity]); //Connection from node1 to node2 Initialized with weight weight1
       *else //If not, reverse Position of Elements in the message

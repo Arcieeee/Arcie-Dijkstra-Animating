@@ -26,8 +26,8 @@ public class DistanceChecker
 
         current = start; //Sets the current searched node to the start
         int currentDistance = 0; //initialize Distance
-        int[][] identityDistance = new int[algorithm.arrayNodes.length][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
-        int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2;
+        int[][] identityDistance = new int[algorithm.arrayNodes.length][4]; //Creates an array as many nodes long with 4 rows, one for checking if a node is already visited, 2 for distance, and 1 for the id of the node that updated the distance last.
+        int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2; //variables for readability and accessesing different rows of the identityDistance array 
 
         for(int i=0; i<algorithm.arrayNodes.length; i++){
             identityDistance[i][status] = 0;
@@ -37,16 +37,16 @@ public class DistanceChecker
 
         identityDistance[start.identity][searchDistance] = 0; identityDistance[start.identity][trueDistance] = 0; //except for the start
 
-        int i=0; //Counter = 0
-        //at this point we have an array full of 0s and max int, and a start distance 0. 
-        if(myGraphic.linePos.length==0&&current!=end){current=end; currentDistance=2147483647;}
+        int i=0; //Counter = 0, at this point we have an array full of 0s and max int, and a start distance 0. 
+
+        if(myGraphic.linePos.length==0&&current!=end){current=end; currentDistance=2147483647;}//If there are no connections, and we are not at the end, current = end and return max value.
 
         while(current != end){ //While we are not at the end
-            while(i<=algorithm.arrayNodes.length-1){  
+            while(i<=algorithm.arrayNodes.length-1){  //And while there are nodes
 
-                int x=0;    
+                int x=0; //counter  
                 while(current.connections[i]==null&&x==0){ //Goes all the connections of the current node until it finds one, or until it runs out of connections to search
-                    i++; if (i>current.connections.length-1){i=current.connections.length-1; x=1;}
+                    i++; if (i>current.connections.length-1){i=current.connections.length-1; x=1;} 
                 }
 
                 if(x==0){ //if we have a connection
@@ -54,8 +54,8 @@ public class DistanceChecker
                         identityDistance[current.connections[i].identity][status] = visited; //Set node status to visited
                         identityDistance[current.connections[i].identity][searchDistance] = identityDistance[current.identity][searchDistance] + current.distance[i]; //Update Search Distance
                         identityDistance[current.connections[i].identity][trueDistance] = identityDistance[current.connections[i].identity][searchDistance]; //Set True Distance to Search Distance
-                        identityDistance[current.connections[i].identity][3]=current.identity;
-                        myGraphic.linePos[current.connectionsID[i]][5]=1; myGraphic.repaint();
+                        identityDistance[current.connections[i].identity][3]=current.identity; //Updates array for who last updated the current explored connection distance
+                        myGraphic.linePos[current.connectionsID[i]][5]=1; myGraphic.repaint(); //Updates status of connection for graphic, repaint.
                     }
                     if(currentDistance == identityDistance[current.identity][searchDistance])
                         currentDistance = identityDistance[current.connections[i].identity][1];  //If this is the first branch from the node, set current Distance to the new distance.
@@ -67,27 +67,27 @@ public class DistanceChecker
 
             //At this point, we have evaluated all connections of the current Node.
             identityDistance[current.identity][searchDistance]=2147483647; //sets search distance to current node to max int to prevent it from being selected again unless a shorter path is found to it.
-            identityDistance[current.identity][status]=searched;
+            identityDistance[current.identity][status]=searched; //status = searched
             int x=0;
 
-            for(i=0; i<=algorithm.arrayNodes.length-1; i++){
+            for(i=0; i<=algorithm.arrayNodes.length-1; i++){ //Goes through all nodes of the array to find the current smallest search distance
                 if(identityDistance[i][searchDistance]<=currentDistance){
-                    x=i; currentDistance=identityDistance[i][searchDistance];}}
+                    x=i; currentDistance=identityDistance[i][searchDistance];}} 
 
             if (x!=end.identity) //if we are not at the end
             {current = algorithm.arrayNodes[x][0];} 
             else {current = end;} //current = Node with that identity.
-            
+
             i=0;
         }
-        
-        if(currentDistance==2147483647){for(i=0;i<myGraphic.linePos.length;i++){myGraphic.linePos[i][5]=1;}}else{
-            while(current!=start){
-            myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
-            current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
+
+        if(currentDistance==2147483647){for(i=0;i<myGraphic.linePos.length;i++){myGraphic.linePos[i][5]=1;}}else{ //If there is no path to the end, colour all connections red and return max int 
+            while(current!=start){ //else starting from the end update each connection that is part of the shortest path to be marked as such.
+                myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
+                current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
+            }
         }
-        }
-        
-        return currentDistance;
+
+        return currentDistance; //returns distance
     }
 }
