@@ -40,6 +40,8 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         menuItem=new JMenuItem("Random Graph Generation"); menuItem.addActionListener(this);  menu.add(menuItem);
         menuItem=new JMenuItem("Import Graph"); menuItem.addActionListener(this); menu.add(menuItem);
         menuItem=new JMenuItem("Run Algorithm"); menuItem.addActionListener(this); menu.add(menuItem);
+        menuItem=new JMenuItem("Set Start Node"); menuItem.addActionListener(this); menu.add(menuItem);
+        menuItem=new JMenuItem("Set End Node"); menuItem.addActionListener(this); menu.add(menuItem);
         
         //Define Menu 3
         menu3 = new JMenu("Sample Graphs"); menuBar.add(menu3); 
@@ -76,7 +78,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         switch (cmd){ //Switch statement to determine what action it is
          case "Quit" : exit(); //Exit program when requested
               break;
-         case "Random Graph Generation" : InD test= new InD("Number of Nodes?"); test.setLocationRelativeTo(this); test.setVisible(true); String reply = test.getText(); int r = Integer.parseInt(reply); algorithm.setNodeNumber(r); //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
+         case "Random Graph Generation" : InD nodeNumber= new InD("Number of Nodes?"); nodeNumber.setLocationRelativeTo(this); nodeNumber.setVisible(true); String nodeNumberReply = nodeNumber.getText(); int nodeNumberInt = Integer.parseInt(nodeNumberReply); algorithm.setNodeNumber(nodeNumberInt); //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
               break;
          case "Run Algorithm" : algorithm.runAlgorithm(); //Run Algorithm
               break;
@@ -87,6 +89,10 @@ public class Gui extends JFrame implements ActionListener,MouseListener
          case "Sample 1" : String sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(sample1); System.out.println("Sample input:"+sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
               break;
          case "Sample 2" : String sample2 ="5,WellingtonCity,400,650,Porirua,200,300,Petone,550,450,Eastbourne,810,650,Upper Hutt,700,200,6,WellingtonCity,Porirua,150,WellingtonCity,Petone,100,Porirua,Petone,200,Porirua,Upper Hutt,300,Petone,Upper Hutt,150,Petone,Eastbourne,100"; processImport(sample2); System.out.println("Sample input:"+sample2); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!");
+              break;
+         case "Set Start Node" : InD startID= new InD("ID of start node?"); startID.setLocationRelativeTo(this); startID.setVisible(true); String replyStartID = startID.getText(); int startIDInt = Integer.parseInt(replyStartID); algorithm.start=algorithm.arrayNodes[startIDInt][0];
+              break;
+         case "Set End Node" : InD endID= new InD("ID of end node?"); endID.setLocationRelativeTo(this); endID.setVisible(true); String replyEndID = endID.getText(); int endIDInt = Integer.parseInt(replyEndID); algorithm.end=algorithm.arrayNodes[endIDInt][0];
               break;
          default : System.out.println(cmd+" is better than the other menu item..."); //Incase you somehow picked something else
        }

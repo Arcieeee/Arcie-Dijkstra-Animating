@@ -44,7 +44,7 @@ public class Algorithm
 
             end.extendedAddConnections(arrayNodes[i][0], numInt); //Adds end to Specified node that is not the start or end with specified weight
             linePos[j][0]=end.xPos; linePos[j][1]=end.yPos; linePos[j][2]=arrayNodes[i][0].xPos; linePos[j][3]=arrayNodes[i][0].yPos; linePos[j][4]=numInt; linePos[j][5]=0; 
-            start.connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[start.identity]=j; j++;
+            end.connectionsID[arrayNodes[i][0].identity]=j; arrayNodes[i][0].connectionsID[end.identity]=j; j++;
         }
     }
 
@@ -120,7 +120,16 @@ public class Algorithm
         end = arrayNodes[nodes.length-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
 
     }
+    
     public void setDistanceChecker(DistanceChecker a){ //Updates DistanceChecker variable so Algorithm can talk to DistanceChecker
         distanceChecker = a;
+    }
+    
+    public void setStart(int startID){
+        start=arrayNodes[startID][0];
+    }
+    
+    public void setEnd(int endID){
+        end=arrayNodes[endID][0];
     }
 }

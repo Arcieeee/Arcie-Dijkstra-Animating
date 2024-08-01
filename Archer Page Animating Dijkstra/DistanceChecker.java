@@ -26,22 +26,22 @@ public class DistanceChecker
 
         current = start; //Sets the current searched node to the start
         int currentDistance = 0; //initialize Distance
-        int[][] identityDistance = new int[end.identity+1][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
+        int[][] identityDistance = new int[algorithm.arrayNodes.length][4]; //Creates an array as many nodes long with 2 rows, one for checking if a node is already visited, the other for distance
         int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2;
 
-        for(int i=1; i<end.identity+1; i++){
+        for(int i=0; i<algorithm.arrayNodes.length; i++){
             identityDistance[i][status] = 0;
             identityDistance[i][searchDistance] = 2147483647; //sets everything in row 1 to 0; row 2 and 3 to max int.
             identityDistance[i][trueDistance] = 2147483647;
         }
 
-        identityDistance[0][searchDistance] = 0; identityDistance[0][trueDistance] = 0; //except for the start
+        identityDistance[start.identity][searchDistance] = 0; identityDistance[start.identity][trueDistance] = 0; //except for the start
 
         int i=0; //Counter = 0
         //at this point we have an array full of 0s and max int, and a start distance 0. 
 
         while(current != end){ //While we are not at the end
-            while(i<=end.identity){  
+            while(i<=algorithm.arrayNodes.length-1){  
 
                 int x=0;    
                 while(current.connections[i]==null&&x==0){ //Goes all the connections of the current node until it finds one, or until it runs out of connections to search
@@ -69,7 +69,7 @@ public class DistanceChecker
             identityDistance[current.identity][status]=searched;
             int x=0;
 
-            for(i=0; i<=end.identity; i++){
+            for(i=0; i<=algorithm.arrayNodes.length-1; i++){
                 if(identityDistance[i][searchDistance]<=currentDistance){
                     x=i; currentDistance=identityDistance[i][searchDistance];}}
 
@@ -79,7 +79,7 @@ public class DistanceChecker
 
             i=0;
         }
-        
+
         while(current!=start){
             myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
             current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
