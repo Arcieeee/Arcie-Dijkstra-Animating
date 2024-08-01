@@ -54,7 +54,7 @@ public class Algorithm
     }
 
     public void runAlgorithm(){ //When asked to Run Dijkstra's algorithm
-        if(arrayNodes!=null){
+        if(arrayNodes!=null&&arrayNodes.length!=0){
         if(myGraphic==null){myGraphic = new Graphics2d(arrayNodes, linePos, this);} else {myGraphic.startup(arrayNodes, linePos);}//Update MyGraphic so it can draw the output of the algorithm
         distanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker to run Dijkstra's algorithm
         distanceChecker.setAlgorithm(this); //Inform the distance checker that this is the algorithm
@@ -116,11 +116,11 @@ public class Algorithm
             i=0; 
         }
 
-        System.out.println("Done"); //Done!
-
-        start = arrayNodes[0][0]; //Sets start Node equal to Node with identity 0
-        end = arrayNodes[nodes.length-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
-
+        try{start = arrayNodes[0][0]; //Sets start Node equal to Node with identity 0
+            end = arrayNodes[nodes.length-1][0]; //Sets start Node equal to Node with identity (Nodes requested - 1)
+            System.out.println("Done"); //Done!
+        } catch (Exception e) {System.out.println("Graph contains no nodes!!!");}
+        
     }
     
     public void setDistanceChecker(DistanceChecker a){ //Updates DistanceChecker variable so Algorithm can talk to DistanceChecker
