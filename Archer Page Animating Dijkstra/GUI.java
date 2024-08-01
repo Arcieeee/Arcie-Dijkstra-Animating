@@ -78,7 +78,7 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         switch (cmd){ //Switch statement to determine what action it is
             case "Quit" : exit(); //Exit program when requested
                 break;
-            case "Random Graph Generation" : InD nodeNumber= new InD("Number of Nodes?"); nodeNumber.setLocationRelativeTo(this); nodeNumber.setVisible(true); String nodeNumberReply = nodeNumber.getText(); int nodeNumberInt; try{nodeNumberInt = Integer.parseInt(nodeNumberReply); try{algorithm.setNodeNumber(nodeNumberInt);} catch (Exception e){System.out.println("Please select a number >=2");}} catch (Exception e){System.out.println("Please input an integer value");} //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
+            case "Random Graph Generation" : InD nodeNumber= new InD("Number of Nodes?"); nodeNumber.setLocationRelativeTo(this); nodeNumber.setVisible(true); String nodeNumberReply = nodeNumber.getText(); int nodeNumberInt; try{nodeNumberInt = Integer.parseInt(nodeNumberReply); try{algorithm.setNodeNumber(nodeNumberInt);} catch (Exception e){System.out.println("Please select a number >=2");}} catch (Exception e){System.out.println("Please input an integer value, e.g '5', or '6' not 'six'");} //First, Create InD instance, Second, get user input and Call the algorithm to generate a random graph with Specified input
                 break;
             case "Run Algorithm" : algorithm.runAlgorithm(); //Run Algorithm
                 break;
