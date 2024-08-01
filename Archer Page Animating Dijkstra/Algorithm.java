@@ -59,7 +59,7 @@ public class Algorithm
             distanceChecker = new DistanceChecker(myGraphic); //Initialize a distance checker to run Dijkstra's algorithm
             distanceChecker.setAlgorithm(this); //Inform the distance checker that this is the algorithm
             System.out.println("The shortest path is "+distanceChecker.path(start, end)+" long"); //prints out the Distance value to the console
-        } else{System.out.println("No graph to run algorithm on");} //Else, informs the user of the bad news.
+        } else{System.out.println("No graph to run algorithm on, please either import a graph, generate a random graph, or pick a sample graph from the menu!");} //Else, informs the user of the bad news.
     }
 
     public void setNodeNumber(int number){ //When asked to create a specified number of nodes
