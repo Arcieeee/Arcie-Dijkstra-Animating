@@ -3,29 +3,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*; //Geometry stuff for lines
 import java.awt.image.BufferedImage; //to reduce flickering
-import java.util.concurrent.TimeUnit; //Attempt at adding delay
+import java.util.concurrent.TimeUnit; //Attempt at adding time delay
 /**
  * This is the class responsible for the visual representation of the algorithm, ie, the graphics
  *
  * Arcieee
- * 22/07/2024
+ * 25/06/2025
  */
 public class Graphics2d extends JFrame {
-    Canvas myGraphic; //Create Canvas
-    Nodes[][] info; //Create array to hold Algorithm info
-    int[][] rectPositions; //Seperate Int array for RectPos
-    int[][] linePos; //Seperate Int array for LinePos
+    //Initialize objects and variables
+    Canvas myGraphic; 
+    Nodes[][] info; 
+    int[][] rectPositions; 
+    int[][] linePos; 
 
-    public Graphics2d(Nodes[][] info, int[][] linePos, Algorithm algorithm){ //Contructor, Get's informed with the Algorithm and Positions of Connections between nodes (LinePos)
-        setTitle("2D graphics"); //Name
-
-        this.info=info; //Add info array as an Instance variable
-        this.getContentPane().setPreferredSize(new Dimension(1000,1000)); //Size
+    public Graphics2d(Nodes[][] info, int[][] linePos, Algorithm algorithm){ //Contructor takes the Algorithm and Positions of Connections between nodes (LinePos)
+        //Set up the graphics window
+        setTitle("2D graphics"); 
+        this.info=info; 
+        this.getContentPane().setPreferredSize(new Dimension(1000,1000)); 
         this.getContentPane().setLayout(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Exit
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE); 
         this.pack();
         this.setVisible(true);
-        this.linePos=linePos; //Add LinePos as a Instance variable
+        this.linePos=linePos; 
 
         fillRectArray(); //Call method to work out Rectangle Positions
     }
@@ -41,7 +42,7 @@ public class Graphics2d extends JFrame {
 
         paintStr(g2); //Paint Strings and Lines
         paintRect(g2); //Paint Rectangles
-    } //paint
+    } 
 
     public void update(int [][] info){ //Updates RectPositions with the corrosponding elements provided.
         for(int i=0; i<info.length; i++){
@@ -49,34 +50,38 @@ public class Graphics2d extends JFrame {
         }
     }
 
-    public void startup(Nodes[][] info, int[][] linePos){ //Method called when asked to paint an entirely new graph.
-        this.linePos=linePos; //Updates linePos with new data
-        this.info=info; //Updates info with new data
-        fillRectArray(); //Call method to work out Rectangle Positions with new data
-        repaint(); //Paints new graph
+    public void startup(Nodes[][] info, int[][] linePos){ //Method for painting an entirely new graph.
+        this.linePos=linePos; 
+        this.info=info; 
+        
+        fillRectArray(); //Updates the Rectangle Positions with new data
+        repaint(); 
     }
 
-    public void paintStr(Graphics2D g2){ //String Paint Method, Draws Connections and Weights
-        g2.setColor(Color.BLACK); //Colour black
+    public void paintStr(Graphics2D g2){ //Painting Method for Strings, also Draws Connections and Weights
+        g2.setColor(Color.BLACK); 
+        int black = 0; int red = 1; int blue = 2;
 
         for(int i=0; i<linePos.length; i++){
-            if(linePos[i][5]==0){g2.setColor(Color.BLACK);} else {g2.setColor(Color.RED); if(linePos[i][5]==2){g2.setColor(Color.BLUE);}} //If this Line has been traversed, paint it red, if it is part of the shortest path, paint it blue, else paint it black
-            g2.drawLine(linePos[i][0]+31, linePos[i][1]+31, linePos[i][2]+31, linePos[i][3]+31); //Draw Line
-            g2.drawString(linePos[i][4]+"", ((linePos[i][0]+linePos[i][2])/2)+31, ((linePos[i][1]+linePos[i][3])/2)+31); //Draws Weight in the midpoint of the line
+            if(linePos[i][5]==black){g2.setColor(Color.BLACK);} else {g2.setColor(Color.RED); if(linePos[i][5]==blue){g2.setColor(Color.BLUE);}} //Blue for shortest, Red for travelled, Black for the rest.
+            
+            //Draws all lines and weights for each line.
+            g2.drawLine(linePos[i][0]+31, linePos[i][1]+31, linePos[i][2]+31, linePos[i][3]+31);
+            g2.drawString(linePos[i][4]+"", ((linePos[i][0]+linePos[i][2])/2)+31, ((linePos[i][1]+linePos[i][3])/2)+31); 
         }
     }
 
     public void paintRect(Graphics2D g2){ //Rectangle Paint Method
         for (int i=0; i<info.length; i++){
-            g2.setColor(Color.BLACK); g2.fillRect(rectPositions[i][0],rectPositions[i][1], 80, 63); //Draws Nodes specified as rect
-            int nameLength=info[i][0].name.length(); //Integer for name length to help position name to the center of the drawn node.
-            g2.setColor(Color.WHITE); g2.drawString(info[i][0].name, ((rectPositions[i][0]+43)-(nameLength*3)),rectPositions[i][1]+32); //Adds Names on Nodes Drawn in correct positions
+            g2.setColor(Color.BLACK); g2.fillRect(rectPositions[i][0],rectPositions[i][1], 80, 63); //Draws Specified Node
+            int nameLength=info[i][0].name.length(); 
+            g2.setColor(Color.WHITE); g2.drawString(info[i][0].name, ((rectPositions[i][0]+43)-(nameLength*3)),rectPositions[i][1]+32); //Adds Name on Drawn node in correct position
         }
     }
 
-    public void fillRectArray(){ //Initialize Array for Rectangles
-        rectPositions = new int[info.length][3]; //Size
-        for(int i=0; i<info.length; i++){ //Fills array with corrosponding info provided by Algorithm
+    public void fillRectArray(){ //Initialize Array for Rectangles, and populates it with the given data.
+        rectPositions = new int[info.length][3]; 
+        for(int i=0; i<info.length; i++){ 
             rectPositions[i][0]=info[i][0].xPos; rectPositions[i][1]=info[i][0].yPos; rectPositions[i][2]=0;
         }
     }
