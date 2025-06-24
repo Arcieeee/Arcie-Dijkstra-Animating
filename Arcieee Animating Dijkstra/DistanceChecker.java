@@ -34,6 +34,9 @@ public class DistanceChecker
             identityDistance[i][searchDistance] = 2147483647; //sets everything in row 1 to 0; row 2 and 3 to max int.
             identityDistance[i][trueDistance] = 2147483647;
         }
+        for(int i=0; i<myGraphic.linePos.length; i++){
+            myGraphic.linePos[i][5] = 0;
+        }
 
         identityDistance[start.identity][searchDistance] = 0; identityDistance[start.identity][trueDistance] = 0; //except for the start
 
