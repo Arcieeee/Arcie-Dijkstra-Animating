@@ -11,3 +11,5 @@ Paint, provides a simple 2d graphic containing a visual representation of the cu
 Run Algorithm, which will run Dijkstra's algorithm on the currently loaded graph, print the results, and update the visual representation.
 
 Sample Graphs 1 & 2, which automatically load a sample graph into the program for the user to view.
+
+Set Start Node/End Node, which allows the user to explicitly set a designated start/end for a given graph, without the import.
