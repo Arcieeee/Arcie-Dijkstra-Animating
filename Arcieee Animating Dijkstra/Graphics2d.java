@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit; //Attempt at adding delay
 /**
  * This is the class responsible for the visual representation of the algorithm, ie, the graphics
  *
- * Archer
+ * Arcieee
  * 22/07/2024
  */
 public class Graphics2d extends JFrame {

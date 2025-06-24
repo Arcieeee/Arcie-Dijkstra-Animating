@@ -2,7 +2,7 @@
 /**
  * Initializes the Gui to run everything.
  *
- * Archer
+ * Arcieee
  * 3/07/2024
  */
 public class Master

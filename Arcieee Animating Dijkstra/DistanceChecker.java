@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 /**
  * This is the class that runs Dijkstra's algorithm on the specified graph given.
  *
- * Archer Page
+ * Arcieee
  * 30/07/2024
  */
 public class DistanceChecker

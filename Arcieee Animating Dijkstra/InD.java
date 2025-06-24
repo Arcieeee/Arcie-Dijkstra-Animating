@@ -4,7 +4,7 @@ import java.awt.event.*; //Imports
 /**
  * The InD is responsible for handling user input
  *
- * Archer Page
+ * Arcieee
  * 30/07/2024
  */
 public class InD extends JDialog

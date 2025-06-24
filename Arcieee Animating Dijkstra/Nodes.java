@@ -2,7 +2,7 @@ import java.lang.Math; //Maths for Math.random()
 /**
  * The Nodes class. Responsible for being the Graph.
  *
- * Archer
+ * Arcieee
  * 30/07/2024
  */
 public class Nodes

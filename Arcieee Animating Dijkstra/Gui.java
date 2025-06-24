@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 /**
  * GuI to interact with all aspects of the program.
  *
- * Archer
+ * Arcieee
  * 1/08/2024
  */
 public class Gui extends JFrame implements ActionListener,MouseListener
