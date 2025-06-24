@@ -12,4 +12,4 @@ Run Algorithm, which will run Dijkstra's algorithm on the currently loaded graph
 
 Sample Graphs 1 & 2, which automatically load a sample graph into the program for the user to view.
 
-Set Start Node/End Node, which allows the user to explicitly set a designated start/end for a given graph, without the import.
+Set Start Node/End Node, which allows the user to explicitly set a designated start/end for a given graph, without altering the import.
