@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Gui
-comment0.text=\r\n\ GuI\ to\ interact\ with\ all\ aspects\ of\ the\ program.\r\n\r\n\ Archer\r\n\ 1/08/2024\r\n
+comment0.text=\r\n\ GuI\ to\ interact\ with\ all\ aspects\ of\ the\ program.\r\n\r\n\ Arcieee\r\n\ 1/08/2024\r\n
 comment1.params=x\ y\ title
 comment1.target=Gui(int,\ int,\ java.lang.String)
 comment10.params=e

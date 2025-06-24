@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Graphics2d
-comment0.text=\r\n\ This\ is\ the\ class\ responsible\ for\ the\ visual\ representation\ of\ the\ algorithm,\ ie,\ the\ graphics\r\n\r\n\ Archer\r\n\ 22/07/2024\r\n
+comment0.text=\r\n\ This\ is\ the\ class\ responsible\ for\ the\ visual\ representation\ of\ the\ algorithm,\ ie,\ the\ graphics\r\n\r\n\ Arcieee\r\n\ 22/07/2024\r\n
 comment1.params=info\ linePos\ algorithm
 comment1.target=Graphics2d(Nodes[][],\ int[][],\ Algorithm)
 comment2.params=g
