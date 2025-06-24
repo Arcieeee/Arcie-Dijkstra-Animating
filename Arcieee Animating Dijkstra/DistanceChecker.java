@@ -27,7 +27,7 @@ public class DistanceChecker
         //Initialize variables/arrays
         current = start; 
         int[][] identityDistance = new int[algorithm.arrayNodes.length][4]; //Creates an array of Nodes with 4 rows, 1 for checking if a node is already visited, 2 for distance, and 1 for the id of the node that updated the distance most recently.
-        int currentDistance = 0; int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2;
+        int currentDistance = 0; int unvisited=0; int visited=1; int searched=2; int status=0; int searchDistance=1; int trueDistance=2; int black = 0; int red = 1; int blue = 2;
         
         //Sets Variables to initial state
         for(int i=0; i<algorithm.arrayNodes.length; i++){
@@ -36,7 +36,7 @@ public class DistanceChecker
             identityDistance[i][trueDistance] = 2147483647;
         }
         for(int i=0; i<myGraphic.linePos.length; i++){
-            myGraphic.linePos[i][5] = 0;
+            myGraphic.linePos[i][5] = black;
         }
         identityDistance[start.identity][searchDistance] = 0; identityDistance[start.identity][trueDistance] = 0; //Exception for the start.
         int i=0; //Counter = 0, at this point we have an array full of 0s and max int, and a start distance 0. 
@@ -57,7 +57,7 @@ public class DistanceChecker
                         identityDistance[current.connections[i].identity][searchDistance] = identityDistance[current.identity][searchDistance] + current.distance[i]; 
                         identityDistance[current.connections[i].identity][trueDistance] = identityDistance[current.connections[i].identity][searchDistance]; 
                         identityDistance[current.connections[i].identity][3]=current.identity; 
-                        myGraphic.linePos[current.connectionsID[i]][5]=1; myGraphic.repaint(); 
+                        myGraphic.linePos[current.connectionsID[i]][5]=red; myGraphic.repaint(); 
                     }
                     if(currentDistance == identityDistance[current.identity][searchDistance])
                         currentDistance = identityDistance[current.connections[i].identity][1];  //If this is the first branch from the node, set current Distance to the new distance.
@@ -82,10 +82,10 @@ public class DistanceChecker
             i=0;
         }
 
-        if(currentDistance==2147483647){for(i=0;i<myGraphic.linePos.length;i++){myGraphic.linePos[i][5]=1;}} //If there is no path to the end, colour all connections red and return max int.
+        if(currentDistance==2147483647){for(i=0;i<myGraphic.linePos.length;i++){myGraphic.linePos[i][5]=red;}} //If there is no path to the end, colour all connections red and return max int.
         else{ //Else starting from the end node, update each connection that is part of the shortest path to be marked as such.
             while(current!=start){ 
-                myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=2;
+                myGraphic.linePos[current.connectionsID[identityDistance[current.identity][3]]][5]=blue;
                 current=algorithm.arrayNodes[identityDistance[current.identity][3]][0];
             }
         }
