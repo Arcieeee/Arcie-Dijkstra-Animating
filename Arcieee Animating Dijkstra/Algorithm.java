@@ -6,7 +6,7 @@ import java.util.Scanner; // Keyboard input.
 /**
  * The Algorithm responsible for most of the Behind the scenes processing of user input and requests
  *
- * Archer Page
+ * Arcieee
  * 22/07/2024
  */
 public class Algorithm
