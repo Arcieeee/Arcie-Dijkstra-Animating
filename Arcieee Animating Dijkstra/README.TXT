@@ -6,5 +6,5 @@ all they need to know. The comments should usually include at least:
 
 PROJECT TITLE: Animating Dijkstra
 PURPOSE OF PROJECT: NCEA LV 3
-VERSION: V0.9
+VERSION: V1.02
 AUTHORS: Arcieee
