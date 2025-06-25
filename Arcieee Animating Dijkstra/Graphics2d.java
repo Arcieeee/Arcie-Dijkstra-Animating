@@ -16,6 +16,7 @@ public class Graphics2d extends JFrame {
     Nodes[][] info; 
     int[][] rectPositions; 
     int[][] linePos; 
+    boolean error = false;
 
     public Graphics2d(Nodes[][] info, int[][] linePos, Algorithm algorithm){ //Contructor takes the Algorithm and Positions of Connections between nodes (LinePos)
         //Set up the graphics window
@@ -40,8 +41,8 @@ public class Graphics2d extends JFrame {
 
         Graphics2D g2 = (Graphics2D) g; 
 
-        paintStr(g2); //Paint Strings and Lines
-        paintRect(g2); //Paint Rectangles
+        try{paintStr(g2); paintRect(g2); //Paint Strings & Rectangles
+        } catch (Exception e){if(error==false){System.out.println("Graph Paint Error");error=true;}}
     } 
 
     public void update(int [][] info){ //Updates RectPositions with the corrosponding elements provided.
@@ -51,6 +52,7 @@ public class Graphics2d extends JFrame {
     }
 
     public void startup(Nodes[][] info, int[][] linePos){ //Method for painting an entirely new graph.
+        error = false;
         this.linePos=linePos; 
         this.info=info; 
         

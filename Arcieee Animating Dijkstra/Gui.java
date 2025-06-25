@@ -3,10 +3,10 @@ import java.awt.*;
 import java.awt.event.*; // Listener
 import java.awt.image.BufferedImage;  // buffered image to reduce flickering.
 /**
- * Gui to interact with all aspects of the program.
+ * GuI to interact with all aspects of the program.
  *
  * Arcieee
- * 25/06/2025
+ * 1/08/2024
  */
 public class Gui extends JFrame implements ActionListener,MouseListener
 { 
@@ -82,31 +82,41 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         box.setTitle("Title Placeholder"); //Placeholder
     }
 
-    public void actionPerformed(ActionEvent c){ //Method for responding to user input when selecting menu items
-        String cmd=c.getActionCommand(); //When a User Action happens, string cmd = action
-        switch (cmd){ //Switch statement to determine the appropriate response based on the request.
-            case "Quit" : exit(); //Exits program 
+    public void actionPerformed(ActionEvent c){ //Method for responding to GUI input
+        String cmd=c.getActionCommand(); 
+        switch (cmd){ //"cmd" is the GUI input
+            case "Quit" : exit(); 
                 break;
-            case "Random Graph Generation" : InD nodeNumber= new InD("Number of Nodes?"); nodeNumber.setLocationRelativeTo(this); nodeNumber.setVisible(true); String nodeNumberReply = nodeNumber.getText(); int nodeNumberInt; try{nodeNumberInt = Integer.parseInt(nodeNumberReply); try{algorithm.setNodeNumber(nodeNumberInt);} catch (Exception e){System.out.println("Please select a number >=2");}} catch (Exception e){System.out.println("Please input an integer value, e.g '5', or '6' not 'six'");} 
-                //First, Creates InD instance, then gets user input and calls the algorithm to generate a random graph with Specified input.
+            case "Random Graph Generation" : InD nodeNumber= new InD("Number of Nodes?"); nodeNumber.setLocationRelativeTo(this); nodeNumber.setVisible(true); String nodeNumberReply = nodeNumber.getText(); int nodeNumberInt; 
+                try{nodeNumberInt = Integer.parseInt(nodeNumberReply); try{algorithm.setNodeNumber(nodeNumberInt);} 
+                catch (Exception e){System.out.println("Please select a number >=2");}} catch (Exception e){System.out.println("Please input an integer value, e.g '5', or '6' not 'six'");} 
+                //Prompts the user for an Input, then try to generate a random graph with said input. Prints an error if the input is bad.
                 break;
             case "Run Algorithm" : algorithm.runAlgorithm(); 
                 break;
-            case "Import Graph" : InD Import = new InD("Graph format:numOfNodes,Node1,xPos1,xPos2,Node2 etc...,numOfEdges,Edge1Start,Edge1End,Weight,Edge2Start etc..."); Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); if(Graph==null||Graph==""){System.out.println("No Input");}else{processImport(Graph);} 
-                //Get's User input, and calls the Process method for input if the input is not null or the empty string.
+            case "Import Graph" : InD Import = new InD("Graph format:TotalNumberOfNodes,Node1Name,xPos1,yPos1,Node2Name,xPos2,yPos2,etc...,TotalNumberOfEdges,Edge1Start,Edge1End,Edge1Weight,Edge2Start,Edge2End,etc..."); 
+                Import.setLocationRelativeTo(this); Import.setVisible(true); String Graph = Import.getText(); 
+                if(Graph==null||Graph==""){System.out.println("No Input");} else{processImport(Graph);} 
+                //Prompts the user for an Input, then tries to generate a graph from the input. If the input is null or the empty string, prints Error.
                 break;
-            case "Paint" : if(algorithm.myGraphic==null){if(algorithm.linePos!=null){try{algorithm.myGraphic = new Graphics2d(algorithm.arrayNodes, algorithm.linePos, algorithm); algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}}else{System.out.println("Nothing to Paint...");}} else {try{algorithm.myGraphic.startup(algorithm.arrayNodes, algorithm.linePos); algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}}
-                //Paint checks if the graphics window exists. If it does, and there is something to paint it creates a new graphics object and paints it. Otherwise it updates the current graphics object to paint it. If there is nothing to paint, ie no graph in memory, Nothing to paint is printed to the console.
+            case "Paint" : if(algorithm.myGraphic==null){if(algorithm.linePos!=null){try{algorithm.myGraphic = new Graphics2d(algorithm.arrayNodes, algorithm.linePos, algorithm); algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}}
+                else{System.out.println("Nothing to Paint...");}} else {try{algorithm.myGraphic.startup(algorithm.arrayNodes, algorithm.linePos); algorithm.myGraphic.repaint();}catch(Exception e){System.out.println("Nothing to Paint...");}}
+                //If there is no graphics window and there is something to paint, creates a new graphics object and paints it. Otherwise it updates the current graphics object. If there is nothing to paint, an Error Message is printed to the console.
                 break;
-            case "Sample 1" : String sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; processImport(sample1); System.out.println("Sample input:"+sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!"); 
-                //Both this and Sample 2 runs the Import method with a preset sample input.
+            case "Sample 1" : String sample1 ="7,A,300,300,B,730,300,C,450,450,D,300,600,E,600,600,F,150,450,G,850,450,10,A,B,300,A,C,200,A,D,300,A,F,300,B,F,100,B,C,195,B,E,300,C,D,200,C,E,300,D,G,120"; 
+                processImport(sample1); System.out.println("Sample input:"+sample1); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!"); 
+                //Runs the Import method with a preset sample input.
                 break;
-            case "Sample 2" : String sample2 ="5,WellingtonCity,400,650,Porirua,200,300,Petone,550,450,Eastbourne,810,650,Upper Hutt,700,200,6,WellingtonCity,Porirua,150,WellingtonCity,Petone,100,Porirua,Petone,200,Porirua,Upper Hutt,300,Petone,Upper Hutt,150,Petone,Eastbourne,100"; processImport(sample2); System.out.println("Sample input:"+sample2); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!"); 
+            case "Sample 2" : String sample2 ="5,WellingtonCity,400,650,Porirua,200,300,Petone,550,450,Eastbourne,810,650,Upper Hutt,700,200,6,WellingtonCity,Porirua,150,WellingtonCity,Petone,100,Porirua,Petone,200,Porirua,Upper Hutt,300,Petone,Upper Hutt,150,Petone,Eastbourne,100";
+                processImport(sample2); System.out.println("Sample input:"+sample2); System.out.println("Sample graph Imported! Please Select Run Algorithm to View!"); 
+                //Runs the Import method with a preset sample input.
                 break;
-            case "Set Start Node" : InD startName= new InD("Name of start node?"); startName.setLocationRelativeTo(this); startName.setVisible(true); String replyStartName = startName.getText(); int startIDInt = nameToID(replyStartName); try{algorithm.start=algorithm.arrayNodes[startIDInt][0]; System.out.println("Set start node to "+replyStartName);} catch (Exception e){System.out.println("No node with that name");} 
+            case "Set Start Node" : InD startName= new InD("Name of start node?"); startName.setLocationRelativeTo(this); startName.setVisible(true); String replyStartName = startName.getText(); int startIDInt = nameToID(replyStartName); 
+                try{algorithm.start=algorithm.arrayNodes[startIDInt][0]; System.out.println("Set start node to "+replyStartName);} catch (Exception e){System.out.println("No node with that name");} 
                 //Prompts user for name of start node, gets reply, runs nameToID() to convert it to an ID, then changes Start to the specified node. If there is no node with that name, an error message is printed to the console.
                 break;
-            case "Set End Node" : InD endName= new InD("Name of end node?"); endName.setLocationRelativeTo(this); endName.setVisible(true); String replyEndName = endName.getText(); int endIDInt = nameToID(replyEndName); try{algorithm.end=algorithm.arrayNodes[endIDInt][0]; System.out.println("Set end node to "+replyEndName);} catch (Exception e){System.out.println("No node with that name");}
+            case "Set End Node" : InD endName= new InD("Name of end node?"); endName.setLocationRelativeTo(this); endName.setVisible(true); String replyEndName = endName.getText(); int endIDInt = nameToID(replyEndName); 
+                try{algorithm.end=algorithm.arrayNodes[endIDInt][0]; System.out.println("Set end node to "+replyEndName);} catch (Exception e){System.out.println("No node with that name");}
                 //Prompts user for name of end node, gets reply, runs nameToID() to convert it to an ID, then changes Start to the specified node. If there is no node with that name, an error message is printed to the console.
                 break;
             default : System.out.println(cmd+" is better than the other menu item..."); //Incase you somehow picked something else...
@@ -117,35 +127,38 @@ public class Gui extends JFrame implements ActionListener,MouseListener
         System.exit(0);
     }
 
-    public int nameToID(String name){ //Takes a name and returns the corrosponding Node ID.
-        int i=0; if(algorithm.arrayNodes==null){return -1;} //Returns -1 if there are no Nodes found.
-        for(i=0; i<algorithm.arrayNodes.length;i++){
-            if(algorithm.arrayNodes[i][0].name.equals(name)){break;} //This triggers when we find a Node with the same name is Input
+    public int nameToID(String name){ //Takes a name and returns the corrosponding Node ID. Or returns -1 if there are no nodes.
+        int i=0; if(algorithm.arrayNodes==null){return -1;}
+        while(i<algorithm.arrayNodes.length){
+            try{if(algorithm.arrayNodes[i][0].name.equals(name)){break;}; i++;}
+            catch (Exception e){return -1;}
         }
-        return i; //returns the node with the correct id, or -1 as default.
+        if(i==algorithm.arrayNodes.length){return -1;} else{return i;}
     }
 
-    public void processImport(String userImport) //Imports a graph from the user.
+    public void processImport(String userImport) //Attempts to create a graph from the User Input.
     {
         String parts[] = userImport.split(","); 
         int numOfNodes = 0; int numOfEdges = 0;
         
-        try {numOfNodes = Integer.parseInt(parts[0]); numOfEdges = Integer.parseInt(parts[1+numOfNodes*3]); //Set variables to the number of nodes and edges respectively. Fails if there are spaces, or the wrong number of things.
-        } catch (Exception e) {System.out.println("Problem with Amount of Nodes specified/Lacking Amount of Edges");} //Error Message
+        //Set variables to the number of nodes and edges respectively. Fails if there are spaces, or the wrong number of things, and prints an Error message.
+        try {numOfNodes = Integer.parseInt(parts[0]); numOfEdges = Integer.parseInt(parts[1+numOfNodes*3]);}
+        catch (Exception e) {System.out.println("Problem with Amount of Nodes specified/Lacking Amount of Edges");}
         
         //Initializes arrays to store "Nodes" and "Connections"
         String nodes[][] = new String[numOfNodes][3]; 
         String connections[][] = new String[numOfEdges][3]; 
+        
+        //Sets Node values based on user input. Or Prints an Error message.
+        try{for (int i=0;i<numOfNodes;i++){nodes[i][0]=parts[3*i+1]; nodes[i][1]=parts[3*i+2]; nodes[i][2]=parts[3*i+3]; }}
+        catch (Exception e){System.out.println("Problem with Assigning Node values");}
+        int edgesOffset=1+numOfNodes*3; //Offset for the element that defines the number of edges.
 
-        for (int i=0;i<numOfNodes;i++){ //Sets Node values based on user input.
-            nodes[i][0]=parts[3*i+1]; nodes[i][1]=parts[3*i+2]; nodes[i][2]=parts[3*i+3]; } 
-
-        int edgesOffset=1+numOfNodes*3; //Sets y to the offset provided for the element that defines the number of edges.
-
+        //Sets Connections and Node distance based on user input. Prints an error if there is one.
         try{
-            for(int i=0; i<numOfEdges; i++){ //Sets Connections and Node distance based on user input.
+            for(int i=0; i<numOfEdges; i++){ 
                 connections[i][0]=parts[3*i+edgesOffset+1]; connections[i][1]=parts[3*i+edgesOffset+2]; connections[i][2]=parts[3*i+edgesOffset+3];} 
-        } catch (Exception e) {System.out.println("Problem with Number of Edges specified");} //Error Message.
+        } catch (Exception e) {System.out.println("Problem with Number of Edges specified");} 
 
         algorithm.importGraph(nodes, connections); //Triggers the Algorithm to update it's Array of Nodes
     }

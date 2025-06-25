@@ -60,15 +60,18 @@ public class Algorithm
     }
 
     public void runAlgorithm(){ //Initializes the running of Dijkstra's algorithm.
-        if(arrayNodes!=null&&arrayNodes.length!=0){ 
-            if(myGraphic==null){myGraphic = new Graphics2d(arrayNodes, linePos, this);} else {myGraphic.startup(arrayNodes, linePos);} //Update MyGraphic.
+        try{if(arrayNodes!=null&&arrayNodes.length!=0){ 
+                //Update MyGraphic.
+                if(myGraphic==null){myGraphic = new Graphics2d(arrayNodes, linePos, this);} else {myGraphic.startup(arrayNodes, linePos);}
 
-            //Initialize a distance checker to run Dijkstra's algorithm
-            distanceChecker = new DistanceChecker(myGraphic);
-            distanceChecker.setAlgorithm(this);
+                //Initialize a distance checker to run Dijkstra's algorithm
+                distanceChecker = new DistanceChecker(myGraphic);
+                distanceChecker.setAlgorithm(this);
 
-            System.out.println("The shortest path is "+distanceChecker.path(start, end)+" long"); //Runs Dijkstras algorithm, and prints the result.
-        } else{System.out.println("No graph to run algorithm on, please either import a graph, generate a random graph, or pick a sample graph from the menu!");} //Error Message.
+                //Runs Dijkstras algorithm, and prints the result.
+                System.out.println("The shortest path is "+distanceChecker.path(start, end)+" long");
+            } else{System.out.println("No graph to run algorithm on, please either import a graph, generate a random graph, or pick a sample graph from the menu!");}
+        } catch (Exception e){System.out.println("Invalid Graph given, likely due to an Import that contained error(s)");}
     }
 
     public void setNodeNumber(int number){ //Creates n nodes.
